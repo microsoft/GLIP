@@ -3,6 +3,7 @@
 <img src="docs/main_model.png" width="800"> 
 
 ## Updates
+12/06/2021: Code and Model are under internal review and will release soon. Stay tuned!
 11/23/2021: Project page built. <br/>
 
 ## Introduction
@@ -12,7 +13,7 @@ The unification brings two benefits: 1) it allows GLIP to learn from both detect
 In our experiments, we pre-train GLIP on 27M grounding data, including 3M human-annotated and 24M web-crawled image-text pairs.
 The learned representations demonstrate strong zero-shot and few-shot transferability to various object-level recognition tasks.
 1) When directly evaluated on COCO and LVIS (without seeing any images in COCO during pre-training), GLIP achieves 49.8 AP and 26.9 AP, respectively, surpassing many supervised baselines.
-2) After fine-tuned on COCO, GLIP achieves 60.8 AP on val, and 61.0 AP on test-dev, matching SoTA.
+2) After fine-tuned on COCO, GLIP achieves 60.8 AP on val and 61.5 AP on test-dev, surpassing prior SoTA. 
 3) When transferred to 13 downstream object detection tasks,  a few-shot GLIP rivals with a fully-supervised Dynamic Head.
 
 Supervised baselines on COCO object detection: Faster-RCNN w/ ResNet50 (40.2) or ResNet101 (42.0) from [Detectron2](https://github.com/facebookresearch/detectron2/blob/main/MODEL_ZOO.md), and [DyHead](https://github.com/microsoft/DynamicHead) w/ Swin-Tiny (49.7).
