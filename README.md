@@ -3,12 +3,12 @@
 <img src="docs/main_model.png" width="800"> 
 
 ## Updates
-12/06/2021: Code and Model are under internal review and will release soon. Stay tuned!
+12/06/2021: GLIP paper on arxiv https://arxiv.org/abs/2112.03857. Code and Model are under internal review and will release soon. Stay tuned!
 
 11/23/2021: Project page built. <br/>
 
 ## Introduction
-This repository is the project page for [GLIP](https://arxiv.org/abs/xxxx), containing necessary instructions to reproduce the results presented in the paper.
+This repository is the project page for [GLIP](https://arxiv.org/abs/2112.03857), containing necessary instructions to reproduce the results presented in the paper.
 This paper presents a grounded language-image pre-training (GLIP) model for learning object-level, language-aware, and semantic-rich visual representations. GLIP unifies object detection and phrase grounding for pre-training.
 The unification brings two benefits: 1) it allows GLIP to learn from both detection and grounding data to improve both tasks and bootstrap a good grounding model; 2) GLIP can leverage massive image-text pairs by generating grounding boxes in a self-training fashion, making the learned representation semantic-rich.
 In our experiments, we pre-train GLIP on 27M grounding data, including 3M human-annotated and 24M web-crawled image-text pairs.
@@ -26,7 +26,7 @@ Please consider citing this paper if you use the code:
       title={Grounded Language-Image Pre-training},
       author={Liunian Harold Li* and Pengchuan Zhang* and Haotian Zhang* and Jianwei Yang and Chunyuan Li and Yiwu Zhong and Lijuan Wang and Lu Yuan and Lei Zhang and Jenq-Neng Hwang and Kai-Wei Chang and Jianfeng Gao},
       year={2021},
-      booktitle={arXiv In Preparation},
+      booktitle={arXiv preprint arXiv:2112.03857},
 }
 ```
 
