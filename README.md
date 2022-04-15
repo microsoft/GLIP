@@ -86,7 +86,7 @@ python -m torch.distributed.launch --nnodes 2 --nproc_per_node=16 tools/train_ne
     --skip-test --use-tensorboard --override_output_dir {output_dir}
 ```
 
-For training GLIP-T models, we used `nnodes = 2`, `nproc_per_node=16` on 32GB A100 machines. For training GLIP-L models, we used `nnodes = 4`, `nproc_per_node=16` on 32GB A100 machines. Please setup the environment accordingly based on your local machine.
+For training GLIP-T models, we used `nnodes = 2`, `nproc_per_node=16` on 32GB V100 machines. For training GLIP-L models, we used `nnodes = 4`, `nproc_per_node=16` on 32GB V100 machines. Please setup the environment accordingly based on your local machine.
 
 
 ## (Zero-Shot) Evaluation
