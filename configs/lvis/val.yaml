@@ -1,0 +1,30 @@
+MODEL:
+  ATSS:
+    NUM_CLASSES: 8 # these fields are not used; just a placeholder
+  FCOS:
+    NUM_CLASSES: 8
+  ROI_BOX_HEAD:
+    NUM_CLASSES: 8
+  DYHEAD:
+    NUM_CLASSES: 8
+DATASETS:
+  REGISTER:
+    lvis_evaluation_mini_val:
+      img_dir: "coco"
+      ann_file: "coco/annotations/lvis_v1_minival_inserted_image_name.json"
+    lvis_evaluation_val:
+      img_dir: "coco"
+      ann_file: "coco/annotations/lvis_od_val.json"
+  TRAIN: ("lvis_evaluation_val",) 
+  TEST: ("lvis_evaluation_val",)
+
+INPUT:
+  MIN_SIZE_TRAIN: 800
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MAX_SIZE_TEST: 1333
+DATALOADER:
+  SIZE_DIVISIBILITY: 32
+  ASPECT_RATIO_GROUPING: False
+TEST:
+  IMS_PER_BATCH: 8
