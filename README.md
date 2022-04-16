@@ -50,7 +50,7 @@ Model | COCO [1] | LVIS [2] | LVIS [3] | ODinW [4] | Pre-Train Data | Config  | 
 -- | -- | -- | -- | -- | -- | -- | --
 GLIP-T (C) | 46.7 / 55.1 | 14.3 | [17.7](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_lvisbest.pth) | 44.4 | Objects365,GoldG | [config](configs/pretrain/glip_Swin_T_O365_GoldG.yaml) | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg.pth)
 GLIP-T [5]  | 46.6 / 55.2  | 17.6  | [20.1](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_cc_sbu_lvisbest.pth) | 42.7 | Objects365,GoldG,CC3M,SBU | [config](configs/pretrain/glip_Swin_T_O365_GoldG.yaml) [6] | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_cc_sbu.pth)
-GLIP-L [7] | 51.4 / 61.7 [8]  | 29.3 | [30.1](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_large_model_lvisbest.pth) | 51.2 | FourODs,GoldG,CC3M+12M,SBU | [config](configs/pretrain/glip_Swin_T_O365_GoldG.yaml) [9] | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_large_model.pth)
+GLIP-L [7] | 51.4 / 61.7 [8]  | 29.3 | [30.1](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_large_model_lvisbest.pth) | 51.2 | FourODs,GoldG,CC3M+12M,SBU | [config](configs/pretrain/glip_Swin_L.yaml) [9] | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_large_model.pth)
 
 [1] Zero-shot and fine-tuning performance on COCO val2017.
 
