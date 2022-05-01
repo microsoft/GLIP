@@ -3,6 +3,8 @@
 <img src="docs/main_model.png" width="800"> 
 
 ## Updates
+04/30/2022: Updated [Demo](https://colab.research.google.com/drive/12x7v-_miN7-SRiziK3Cx4ffJzstBJNqb?usp=sharing)!
+
 04/14/2022: GLIP has been accepted to CVPR 2022 as an oral presentation! First version of code and pre-trained models are released!
 
 12/06/2021: GLIP paper on arxiv https://arxiv.org/abs/2112.03857.
@@ -16,13 +18,17 @@ This repository is the project page for [GLIP](https://arxiv.org/abs/2112.03857)
 2. After fine-tuned on COCO, GLIP achieves 60.8 AP on val and 61.5 AP on test-dev, surpassing prior SoTA.
 3. When transferred to 13 downstream object detection tasks, a few-shot GLIP rivals with a fully-supervised Dynamic Head.
 
-We provide code to:
+We provide code for:
 
-1. **pre-train** GLIP on detection and grounding data;
-2. **zero-shot evaluate** GLIP on standard benchmarks (COCO, LVIS, Flickr30K) and custom COCO-formated datasets;
-3. **fine-tune** GLIP on standard benchmarks (COCO) and custom COCO-formated datasets.
+1. **pre-training** GLIP on detection and grounding data;
+2. **zero-shot evaluating** GLIP on standard benchmarks (COCO, LVIS, Flickr30K) and custom COCO-formated datasets;
+3. **fine-tuning** GLIP on standard benchmarks (COCO) and custom COCO-formated datasets;
+4. **a Colab demo**.
 
 Please see respective sections for instructions.
+
+## Demo
+Please see a Colab demo at [link](https://colab.research.google.com/drive/12x7v-_miN7-SRiziK3Cx4ffJzstBJNqb?usp=sharing)!
 
 ## Installation and Setup
 
