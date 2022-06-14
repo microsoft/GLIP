@@ -3,6 +3,8 @@
 <img src="docs/main_model.png" width="800"> 
 
 ## Updates
+06/13/2022: GLIPv2 is on Arxiv https://arxiv.org/abs/2206.05836.
+
 04/30/2022: Updated [Demo](https://colab.research.google.com/drive/12x7v-_miN7-SRiziK3Cx4ffJzstBJNqb?usp=sharing)!
 
 04/14/2022: GLIP has been accepted to CVPR 2022 as an oral presentation! First version of code and pre-trained models are released!
