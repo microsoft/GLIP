@@ -1,0 +1,119 @@
+DATALOADER:
+  ASPECT_RATIO_GROUPING: false
+  SIZE_DIVISIBILITY: 32
+DATASETS:
+  GENERAL_COPY: 16
+  OVERRIDE_CATEGORY: '[{"id": 1, "name": "biker", "supercategory": "obstacles"}, {"id":
+    2, "name": "car", "supercategory": "obstacles"}, {"id": 3, "name": "pedestrian",
+    "supercategory": "obstacles"}, {"id": 4, "name": "trafficLight", "supercategory":
+    "obstacles"}, {"id": 5, "name": "trafficLight-Green", "supercategory": "obstacles"},
+    {"id": 6, "name": "trafficLight-GreenLeft", "supercategory": "obstacles"}, {"id":
+    7, "name": "trafficLight-Red", "supercategory": "obstacles"}, {"id": 8, "name":
+    "trafficLight-RedLeft", "supercategory": "obstacles"}, {"id": 9, "name": "trafficLight-Yellow",
+    "supercategory": "obstacles"}, {"id": 10, "name": "trafficLight-YellowLeft", "supercategory":
+    "obstacles"}, {"id": 11, "name": "truck", "supercategory": "obstacles"}]'
+  PREDEFINED_TEXT: odinw/pothole/category_description.json
+  REGISTER:
+    test:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/test_annotations_without_background.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/train_annotations_without_background.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train_10_3:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_train_shot10_seed3.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train_10_30:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_train_shot10_seed30.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train_10_300:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_train_shot10_seed300.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train_1_3:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_train_shot1_seed3.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train_1_30:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_train_shot1_seed30.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train_1_300:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_train_shot1_seed300.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train_3_3:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_train_shot3_seed3.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train_3_30:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_train_shot3_seed30.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train_3_300:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_train_shot3_seed300.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train_5_3:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_train_shot5_seed3.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train_5_30:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_train_shot5_seed30.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    train_5_300:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_train_shot5_seed300.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/val_annotations_without_background.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val_10_3:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_val_shot10_seed3.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val_10_30:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_val_shot10_seed30.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val_10_300:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_val_shot10_seed300.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val_1_3:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_val_shot1_seed3.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val_1_30:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_val_shot1_seed30.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val_1_300:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_val_shot1_seed300.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val_3_3:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_val_shot3_seed3.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val_3_30:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_val_shot3_seed30.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val_3_300:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_val_shot3_seed300.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val_5_3:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_val_shot5_seed3.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val_5_30:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_val_shot5_seed30.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+    val_5_300:
+      ann_file: odinw/selfdrivingCar/fixedLarge/export/fewshot_val_shot5_seed300.json
+      img_dir: odinw/selfdrivingCar/fixedLarge/export/
+  TEST: ("val",)
+  TRAIN: ("train",)
+INPUT:
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: 800
+MODEL:
+  ATSS:
+    NUM_CLASSES: 3000
+  DYHEAD:
+    NUM_CLASSES: 3000
+  FCOS:
+    NUM_CLASSES: 3000
+  ROI_BOX_HEAD:
+    NUM_CLASSES: 3000
+SOLVER:
+  CHECKPOINT_PERIOD: 100
+  MAX_EPOCH: 12
+  WARMUP_ITERS: 0
+TEST:
+  IMS_PER_BATCH: 8

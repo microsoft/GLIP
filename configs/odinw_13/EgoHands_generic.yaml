@@ -1,0 +1,150 @@
+DATALOADER:
+  ASPECT_RATIO_GROUPING: false
+  SIZE_DIVISIBILITY: 32
+DATASETS:
+  GENERAL_COPY: 16
+  OVERRIDE_CATEGORY: '[{"id": 1, "name": "hand", "supercategory": "hands"}]'
+  PREDEFINED_TEXT: odinw/pothole/category_description.json
+  REGISTER:
+    minival:
+      ann_file: odinw/EgoHands/generic/mini_val/annotations_without_background.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    minival_10_3:
+      ann_file: odinw/EgoHands/generic/mini_val/fewshot_minival_shot10_seed3.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    minival_10_30:
+      ann_file: odinw/EgoHands/generic/mini_val/fewshot_minival_shot10_seed30.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    minival_10_300:
+      ann_file: odinw/EgoHands/generic/mini_val/fewshot_minival_shot10_seed300.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    minival_1_3:
+      ann_file: odinw/EgoHands/generic/mini_val/fewshot_minival_shot1_seed3.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    minival_1_30:
+      ann_file: odinw/EgoHands/generic/mini_val/fewshot_minival_shot1_seed30.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    minival_1_300:
+      ann_file: odinw/EgoHands/generic/mini_val/fewshot_minival_shot1_seed300.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    minival_3_3:
+      ann_file: odinw/EgoHands/generic/mini_val/fewshot_minival_shot3_seed3.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    minival_3_30:
+      ann_file: odinw/EgoHands/generic/mini_val/fewshot_minival_shot3_seed30.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    minival_3_300:
+      ann_file: odinw/EgoHands/generic/mini_val/fewshot_minival_shot3_seed300.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    minival_5_3:
+      ann_file: odinw/EgoHands/generic/mini_val/fewshot_minival_shot5_seed3.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    minival_5_30:
+      ann_file: odinw/EgoHands/generic/mini_val/fewshot_minival_shot5_seed30.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    minival_5_300:
+      ann_file: odinw/EgoHands/generic/mini_val/fewshot_minival_shot5_seed300.json
+      img_dir: odinw/EgoHands/generic/mini_val
+    test:
+      ann_file: odinw/EgoHands/generic/test/annotations_without_background.json
+      img_dir: odinw/EgoHands/generic/test
+    train:
+      ann_file: odinw/EgoHands/generic/train/annotations_without_background.json
+      img_dir: odinw/EgoHands/generic/train
+    train_10_3:
+      ann_file: odinw/EgoHands/generic/train/fewshot_train_shot10_seed3.json
+      img_dir: odinw/EgoHands/generic/train
+    train_10_30:
+      ann_file: odinw/EgoHands/generic/train/fewshot_train_shot10_seed30.json
+      img_dir: odinw/EgoHands/generic/train
+    train_10_300:
+      ann_file: odinw/EgoHands/generic/train/fewshot_train_shot10_seed300.json
+      img_dir: odinw/EgoHands/generic/train
+    train_1_3:
+      ann_file: odinw/EgoHands/generic/train/fewshot_train_shot1_seed3.json
+      img_dir: odinw/EgoHands/generic/train
+    train_1_30:
+      ann_file: odinw/EgoHands/generic/train/fewshot_train_shot1_seed30.json
+      img_dir: odinw/EgoHands/generic/train
+    train_1_300:
+      ann_file: odinw/EgoHands/generic/train/fewshot_train_shot1_seed300.json
+      img_dir: odinw/EgoHands/generic/train
+    train_3_3:
+      ann_file: odinw/EgoHands/generic/train/fewshot_train_shot3_seed3.json
+      img_dir: odinw/EgoHands/generic/train
+    train_3_30:
+      ann_file: odinw/EgoHands/generic/train/fewshot_train_shot3_seed30.json
+      img_dir: odinw/EgoHands/generic/train
+    train_3_300:
+      ann_file: odinw/EgoHands/generic/train/fewshot_train_shot3_seed300.json
+      img_dir: odinw/EgoHands/generic/train
+    train_5_3:
+      ann_file: odinw/EgoHands/generic/train/fewshot_train_shot5_seed3.json
+      img_dir: odinw/EgoHands/generic/train
+    train_5_30:
+      ann_file: odinw/EgoHands/generic/train/fewshot_train_shot5_seed30.json
+      img_dir: odinw/EgoHands/generic/train
+    train_5_300:
+      ann_file: odinw/EgoHands/generic/train/fewshot_train_shot5_seed300.json
+      img_dir: odinw/EgoHands/generic/train
+    val:
+      ann_file: odinw/EgoHands/generic/valid/annotations_without_background.json
+      img_dir: odinw/EgoHands/generic/valid
+    val_10_3:
+      ann_file: odinw/EgoHands/generic/valid/fewshot_val_shot10_seed3.json
+      img_dir: odinw/EgoHands/generic/valid
+    val_10_30:
+      ann_file: odinw/EgoHands/generic/valid/fewshot_val_shot10_seed30.json
+      img_dir: odinw/EgoHands/generic/valid
+    val_10_300:
+      ann_file: odinw/EgoHands/generic/valid/fewshot_val_shot10_seed300.json
+      img_dir: odinw/EgoHands/generic/valid
+    val_1_3:
+      ann_file: odinw/EgoHands/generic/valid/fewshot_val_shot1_seed3.json
+      img_dir: odinw/EgoHands/generic/valid
+    val_1_30:
+      ann_file: odinw/EgoHands/generic/valid/fewshot_val_shot1_seed30.json
+      img_dir: odinw/EgoHands/generic/valid
+    val_1_300:
+      ann_file: odinw/EgoHands/generic/valid/fewshot_val_shot1_seed300.json
+      img_dir: odinw/EgoHands/generic/valid
+    val_3_3:
+      ann_file: odinw/EgoHands/generic/valid/fewshot_val_shot3_seed3.json
+      img_dir: odinw/EgoHands/generic/valid
+    val_3_30:
+      ann_file: odinw/EgoHands/generic/valid/fewshot_val_shot3_seed30.json
+      img_dir: odinw/EgoHands/generic/valid
+    val_3_300:
+      ann_file: odinw/EgoHands/generic/valid/fewshot_val_shot3_seed300.json
+      img_dir: odinw/EgoHands/generic/valid
+    val_5_3:
+      ann_file: odinw/EgoHands/generic/valid/fewshot_val_shot5_seed3.json
+      img_dir: odinw/EgoHands/generic/valid
+    val_5_30:
+      ann_file: odinw/EgoHands/generic/valid/fewshot_val_shot5_seed30.json
+      img_dir: odinw/EgoHands/generic/valid
+    val_5_300:
+      ann_file: odinw/EgoHands/generic/valid/fewshot_val_shot5_seed300.json
+      img_dir: odinw/EgoHands/generic/valid
+  TEST: ("minival",)
+  TRAIN: ("train",)
+INPUT:
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: 800
+MODEL:
+  ATSS:
+    NUM_CLASSES: 2
+  DYHEAD:
+    NUM_CLASSES: 2
+  FCOS:
+    NUM_CLASSES: 2
+  ROI_BOX_HEAD:
+    NUM_CLASSES: 2
+SOLVER:
+  CHECKPOINT_PERIOD: 100
+  MAX_EPOCH: 12
+  WARMUP_ITERS: 0
+TEST:
+  IMS_PER_BATCH: 8

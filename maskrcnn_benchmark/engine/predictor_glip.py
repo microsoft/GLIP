@@ -7,7 +7,7 @@ import nltk
 import inflect
 from transformers import AutoTokenizer
 from torchvision import transforms as T
-
+import pdb
 from maskrcnn_benchmark.modeling.detector import build_detection_model
 from maskrcnn_benchmark.utils.checkpoint import DetectronCheckpointer
 from maskrcnn_benchmark.structures.image_list import to_image_list
@@ -31,19 +31,22 @@ class GLIPDemo(object):
                  min_image_size=None,
                  show_mask_heatmaps=False,
                  masks_per_dim=5,
+                 load_model=True
                  ):
         self.cfg = cfg.clone()
-        self.model = build_detection_model(cfg)
-        self.model.eval()
-        self.device = torch.device(cfg.MODEL.DEVICE)
-        self.model.to(self.device)
+        if load_model:
+            self.model = build_detection_model(cfg)
+            self.model.eval()
+            self.device = torch.device(cfg.MODEL.DEVICE)
+            self.model.to(self.device)
         self.min_image_size = min_image_size
         self.show_mask_heatmaps = show_mask_heatmaps
         self.masks_per_dim = masks_per_dim
 
         save_dir = cfg.OUTPUT_DIR
-        checkpointer = DetectronCheckpointer(cfg, self.model, save_dir=save_dir)
-        _ = checkpointer.load(cfg.MODEL.WEIGHT)
+        if load_model:
+            checkpointer = DetectronCheckpointer(cfg, self.model, save_dir=save_dir)
+            _ = checkpointer.load(cfg.MODEL.WEIGHT)
 
         self.transforms = self.build_transform()
 
@@ -128,8 +131,13 @@ class GLIPDemo(object):
         top_predictions = self._post_process_fixed_thresh(predictions)
         return top_predictions
 
-    def run_on_web_image(self, original_image, original_caption, thresh=0.5):
-        predictions = self.compute_prediction(original_image, original_caption)
+    def run_on_web_image(self, 
+            original_image, 
+            original_caption, 
+            thresh=0.5,
+            custom_entity = None,
+            alpha = 0.0):
+        predictions = self.compute_prediction(original_image, original_caption, custom_entity)
         top_predictions = self._post_process(predictions, thresh)
 
         result = original_image.copy()
@@ -139,17 +147,60 @@ class GLIPDemo(object):
         result = self.overlay_entity_names(result, top_predictions)
         if self.cfg.MODEL.MASK_ON:
             result = self.overlay_mask(result, top_predictions)
-
         return result, top_predictions
 
-    def compute_prediction(self, original_image, original_caption):
+    def visualize_with_predictions(self, 
+            original_image, 
+            predictions, 
+            thresh=0.5,
+            alpha=0.0,
+            box_pixel=3,
+            text_size = 1,
+            text_pixel = 2,
+            text_offset = 10,
+            text_offset_original = 4,
+            color = 255):
+        self.color = color
+        height, width = original_image.shape[:-1]
+        predictions = predictions.resize((width, height))
+        top_predictions = self._post_process(predictions, thresh)
+
+        result = original_image.copy()
+        if self.show_mask_heatmaps:
+            return self.create_mask_montage(result, top_predictions)
+        result = self.overlay_boxes(result, top_predictions, alpha=alpha, box_pixel=box_pixel)
+        result = self.overlay_entity_names(result, top_predictions, text_size=text_size, text_pixel=text_pixel, text_offset = text_offset, text_offset_original = text_offset_original)
+        if self.cfg.MODEL.MASK_ON:
+            result = self.overlay_mask(result, top_predictions)
+        return result, top_predictions
+
+    def compute_prediction(self, original_image, original_caption, custom_entity = None):
         # image
         image = self.transforms(original_image)
         image_list = to_image_list(image, self.cfg.DATALOADER.SIZE_DIVISIBILITY)
         image_list = image_list.to(self.device)
         # caption
-        tokenized = self.tokenizer([original_caption], return_tensors="pt")
-        tokens_positive = self.run_ner(original_caption)
+        if isinstance(original_caption, list):
+            # we directly provided a list of category names
+            caption_string = ""
+            tokens_positive = []
+            seperation_tokens = " . "
+            for word in original_caption:
+                
+                tokens_positive.append([len(caption_string), len(caption_string) + len(word)])
+                caption_string += word
+                caption_string += seperation_tokens
+            
+            tokenized = self.tokenizer([caption_string], return_tensors="pt")
+            tokens_positive = [tokens_positive]
+
+            original_caption = caption_string
+            print(tokens_positive)
+        else:
+            tokenized = self.tokenizer([original_caption], return_tensors="pt")
+            if custom_entity is None:
+                tokens_positive = self.run_ner(original_caption)
+            print(tokens_positive)
         # process positive map
         positive_map = create_positive_map(tokenized, tokens_positive)
 
@@ -228,19 +279,26 @@ class GLIPDemo(object):
         """
         colors = (30 * (labels[:, None] - 1) + 1) * self.palette
         colors = (colors % 255).numpy().astype("uint8")
+        try:
+            colors = (colors * 0 + self.color).astype("uint8")
+        except:
+            pass
         return colors
 
-    def overlay_boxes(self, image, predictions):
+    def overlay_boxes(self, image, predictions, alpha=0.5, box_pixel = 3):
         labels = predictions.get_field("labels")
         boxes = predictions.bbox
 
         colors = self.compute_colors_for_labels(labels).tolist()
-
+        new_image = image.copy()
         for box, color in zip(boxes, colors):
             box = box.to(torch.int64)
             top_left, bottom_right = box[:2].tolist(), box[2:].tolist()
-            image = cv2.rectangle(
-                image, tuple(top_left), tuple(bottom_right), tuple(color), 2)
+            new_image = cv2.rectangle(
+                new_image, tuple(top_left), tuple(bottom_right), tuple(color), box_pixel)
+
+        # Following line overlays transparent rectangle over the image
+        image = cv2.addWeighted(new_image, alpha, image, 1 - alpha, 0)
 
         return image
 
@@ -252,15 +310,19 @@ class GLIPDemo(object):
             box = box.to(torch.int64)
             image = cv2.putText(image, '%.3f' % score,
                                 (int(box[0]), int((box[1] + box[3]) / 2)),
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.3,
-                                (255, 255, 255), 1)
+                                cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 255), 2, cv2.LINE_AA)
 
         return image
 
-    def overlay_entity_names(self, image, predictions, names=None):
+    def overlay_entity_names(self, image, predictions, names=None, text_size=1.0, text_pixel=2, text_offset = 10, text_offset_original = 4):
         scores = predictions.get_field("scores").tolist()
         labels = predictions.get_field("labels").tolist()
         new_labels = []
+        if self.cfg.MODEL.RPN_ARCHITECTURE == "VLDYHEAD":
+            plus = 1
+        else:
+            plus = 0
+        self.plus = plus
         if self.entities and self.plus:
             for i in labels:
                 if i <= len(self.entities):
@@ -272,13 +334,20 @@ class GLIPDemo(object):
             new_labels = ['object' for i in labels]
         boxes = predictions.bbox
 
-        template = "{}: {:.2f}"
+        template = "{}:{:.2f}"
+        previous_locations = []
         for box, score, label in zip(boxes, scores, new_labels):
             x, y = box[:2]
-            s = template.format(label, score)
+            s = template.format(label, score).replace("_", " ").replace("(", "").replace(")", "")
+            for x_prev, y_prev in previous_locations:
+                if abs(x - x_prev) < abs(text_offset) and abs(y - y_prev) < abs(text_offset):
+                    y -= text_offset
+
             cv2.putText(
-                image, s, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, .5, (255, 255, 255), 1
+                image, s, (int(x), int(y)-text_offset_original), cv2.FONT_HERSHEY_SIMPLEX, text_size, (self.color, self.color, self.color), text_pixel, cv2.LINE_AA
             )
+            previous_locations.append((int(x), int(y)))
+
 
         return image
 

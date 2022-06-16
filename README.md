@@ -1,8 +1,11 @@
 # GLIP: Grounded Language-Image Pre-training  
 
-<img src="docs/main_model.png" width="800"> 
+<img src="docs/lead.png" width="800"> 
+
 
 ## Updates
+06/16/2022: ODinW benchmark released! GLIP-T A&B released!
+
 04/30/2022: Updated [Demo](https://colab.research.google.com/drive/12x7v-_miN7-SRiziK3Cx4ffJzstBJNqb?usp=sharing)!
 
 04/14/2022: GLIP has been accepted to CVPR 2022 as an oral presentation! First version of code and pre-trained models are released!
@@ -24,11 +27,17 @@ We provide code for:
 2. **zero-shot evaluating** GLIP on standard benchmarks (COCO, LVIS, Flickr30K) and custom COCO-formated datasets;
 3. **fine-tuning** GLIP on standard benchmarks (COCO) and custom COCO-formated datasets;
 4. **a Colab demo**.
+5. Toolkits for **the Object Detection in the Wild Benchmark (ODinW)** with 35 downstream detection tasks.
 
 Please see respective sections for instructions.
 
 ## Demo
 Please see a Colab demo at [link](https://colab.research.google.com/drive/12x7v-_miN7-SRiziK3Cx4ffJzstBJNqb?usp=sharing)!
+
+## The Object Detection in the Wild Benchmark
+ODinW was first proposed in GLIP and refined and formalized in [ELEVATER](https://arxiv.org/pdf/2204.08790.pdf). GLIP used 13 downstream tasks while the full ODinW has 35 downstream tasks. It will be hosted as a challenge at [the CV in the Wild Workshop @ ECCV 2022](https://computer-vision-in-the-wild.github.io). We hope our code encourage the community to participate in this challenge!
+
+ Please see [odinw/README.md](odinw/README.md) for instructions.
 
 ## Installation and Setup
 
@@ -45,8 +54,8 @@ python setup.py build develop --user
 ***Backbone Checkpoints.*** Download the ImageNet pre-trained backbone checkpoints into the ``MODEL`` folder. 
 ```
 mkdir MODEL
-wget https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/swin_tiny_patch4_window7_224.pth -O MODEL/swin_tiny_patch4_window7_224.pth
-wget https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/swin_large_patch4_window12_384_22k.pth -O MODEL/swin_large_patch4_window12_384_22k.pth
+wget https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/swin_tiny_patch4_window7_224.pth -O swin_tiny_patch4_window7_224.pth
+wget https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/swin_large_patch4_window12_384_22k.pth -O swin_large_patch4_window12_384_22k.pth
 ```
 
 
@@ -54,9 +63,11 @@ wget https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/swin_la
 
 Model | COCO [1] | LVIS [2] | LVIS [3] | ODinW [4] | Pre-Train Data | Config  | Weight
 -- | -- | -- | -- | -- | -- | -- | --
-GLIP-T (C) | 46.7 / 55.1 | 14.3 | [17.7](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_lvisbest.pth) | 44.4 | Objects365,GoldG | [config](configs/pretrain/glip_Swin_T_O365_GoldG.yaml) | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg.pth)
-GLIP-T [5]  | 46.6 / 55.2  | 17.6  | [20.1](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_cc_sbu_lvisbest.pth) | 42.7 | Objects365,GoldG,CC3M,SBU | [config](configs/pretrain/glip_Swin_T_O365_GoldG.yaml) [6] | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_cc_sbu.pth)
-GLIP-L [7] | 51.4 / 61.7 [8]  | 29.3 | [30.1](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_large_model_lvisbest.pth) | 51.2 | FourODs,GoldG,CC3M+12M,SBU | [config](configs/pretrain/glip_Swin_L.yaml) [9] | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_large_model.pth)
+GLIP-T (**A**) | 42.9 / 52.9 | - | 14.2 | ~28.7 | O365 | [config](configs/pretrain/glip_A_Swin_T_O365.yaml) | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_a_tiny_o365.pth)
+GLIP-T (**B**) | 44.9 / 53.8  | - | 13.5 | ~33.2 | O365 | [config](configs/pretrain/glip_Swin_T_O365.yaml) | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365.pth)
+GLIP-T (**C**) | 46.7 / 55.1 | 14.3 | [17.7](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_lvisbest.pth) | 44.4 | O365,GoldG | [config](configs/pretrain/glip_Swin_T_O365_GoldG.yaml) | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg.pth)
+**GLIP-T** [5]  | 46.6 / 55.2  | 17.6  | [20.1](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_cc_sbu_lvisbest.pth) | 42.7 | O365,GoldG,CC3M,SBU | [config](configs/pretrain/glip_Swin_T_O365_GoldG.yaml) [6] | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_cc_sbu.pth)
+**GLIP-L** [7] | 51.4 / 61.7 [8]  | 29.3 | [30.1](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_large_model_lvisbest.pth) | 51.2 | FourODs,GoldG,CC3M+12M,SBU | [config](configs/pretrain/glip_Swin_L.yaml) [9] | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_large_model.pth)
 
 [1] Zero-shot and fine-tuning performance on COCO val2017.
 
@@ -64,7 +75,7 @@ GLIP-L [7] | 51.4 / 61.7 [8]  | 29.3 | [30.1](https://penzhanwu2bbs.blob.core.wi
 
 [3] On LVIS, the model could overfit slightly during the pre-training course. Thus we reported two numbers on LVIS: the performance of the last checkpoint (LVIS[2]) and the performance of the best checkpoint during the pre-training course (LVIS[3]).
 
-[4] Zero-shot performance on the 13 ODinW datasets.
+[4] Zero-shot performance on the 13 ODinW datasets. The numbers reported in the GLIP paper is from the best checkpoint during the pre-training course, which may be slightly higher than the numbers for the released last checkpoint, similar to the case of LVIS.
 
 [5] GLIP-T released in this repo is pre-trained on Conceptual Captions 3M and SBU captions. It is referred in paper in Table 1 and in Appendix C.3. It differs slightly from the GLIP-T in the main paper in terms of downstream performance. We will release the pre-training support for using CC3M and SBU captions data in the next update.
 
@@ -141,7 +152,7 @@ We will use the [Aquarium](https://public.roboflow.com/object-detection/aquarium
     wget https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/odinw/Aquarium/Aquarium%20Combined.v2-raw-1024.coco/valid/annotations_without_background.json -O DATASET/odinw/Aquarium/Aquarium\ Combined.v2-raw-1024.coco/valid/annotations_without_background.json
     ```
     
-4. Then create a yaml file as in ``configs/odinw/Aquarium_Aquarium_Combined.v2-raw-1024.coco.yaml``. A few fields to be noted in the yamls:
+4. Then create a yaml file as in ``configs/odinw_13/Aquarium_Aquarium_Combined.v2-raw-1024.coco.yaml``. A few fields to be noted in the yamls:
 
     DATASET.CAPTION_PROMPT allows manually changing the prompt (the default prompt is simply concatnating all the categories);
 

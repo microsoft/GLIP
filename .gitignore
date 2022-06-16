@@ -36,3 +36,6 @@ dist/
 # MacOS
 .DS_Store
 
+# Custom
+*.custom.py
+

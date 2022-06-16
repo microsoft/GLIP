@@ -1,0 +1,861 @@
+Ambulance:
+  clean_name: Ambulance
+  def_wiki: An emergency vehicle designed for transporting seriously ill or injured
+    people to a hospital.
+  def_wn: a vehicle that takes people to and from hospitals
+  name: Ambulance
+  path_wn:
+  - ambulance
+  - car
+  - motor_vehicle
+  - self-propelled_vehicle
+  - wheeled_vehicle
+  - container
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: ambulance car motor_vehicle self-propelled_vehicle wheeled_vehicle container
+    instrumentality artifact whole object
+  path_wn3: ambulance car motor_vehicle
+Bus:
+  clean_name: Bus
+  def_wiki: A motor vehicle for transporting large numbers of people along roads.
+  def_wn: a vehicle carrying many passengers; used for public transport
+  name: Bus
+  path_wn:
+  - bus
+  - public_transport
+  - conveyance
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: bus public_transport conveyance instrumentality artifact whole object
+    physical_entity entity
+  path_wn3: bus public_transport conveyance
+Car:
+  clean_name: Car
+  def_wiki: A wheeled vehicle that moves independently, with at least three wheels,
+    powered mechanically, steered by a driver and mostly for personal transportation.
+  def_wn: a motor vehicle with four wheels; usually propelled by an internal combustion
+    engine
+  name: Car
+  path_wn:
+  - car
+  - motor_vehicle
+  - self-propelled_vehicle
+  - wheeled_vehicle
+  - container
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: car motor_vehicle self-propelled_vehicle wheeled_vehicle container instrumentality
+    artifact whole object physical_entity
+  path_wn3: car motor_vehicle self-propelled_vehicle
+Crab:
+  clean_name: Crab
+  def_wiki: A crustacean of the infraorder Brachyura, having five pairs of legs, the
+    foremost of which are in the form of claws, and a carapace.
+  def_wn: decapod having eyes on short stalks and a broad flattened carapace with
+    a small abdomen folded under the thorax and pincers
+  name: Crab
+  path_wn:
+  - crab
+  - decapod_crustacean
+  - crustacean
+  - arthropod
+  - invertebrate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: crab decapod_crustacean crustacean arthropod invertebrate animal organism
+    living_thing whole object
+  path_wn3: crab decapod_crustacean crustacean
+Lobster:
+  clean_name: Lobster
+  def_wiki: red-colored, especially from a sunburn.
+  def_wn: flesh of a lobster
+  name: Lobster
+  path_wn:
+  - lobster
+  - shellfish
+  - seafood
+  - food
+  - solid
+  - matter
+  - physical_entity
+  - entity
+  path_wn10: lobster shellfish seafood food solid matter physical_entity entity
+  path_wn3: lobster shellfish seafood
+Motorcycle:
+  clean_name: Motorcycle
+  def_wiki: An open-seated motor vehicle with handlebars instead of a steering wheel,
+    and having two (or sometimes three) wheels.
+  def_wn: a motor vehicle with two wheels and a strong frame
+  name: Motorcycle
+  path_wn:
+  - motorcycle
+  - motor_vehicle
+  - self-propelled_vehicle
+  - wheeled_vehicle
+  - container
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: motorcycle motor_vehicle self-propelled_vehicle wheeled_vehicle container
+    instrumentality artifact whole object physical_entity
+  path_wn3: motorcycle motor_vehicle self-propelled_vehicle
+Shrimp:
+  clean_name: Shrimp
+  def_wiki: Any of many swimming, often edible, crustaceans, chiefly of the infraorder
+    Caridea or the suborder Dendrobranchiata, with slender legs, long whiskers and
+    a long abdomen.
+  def_wn: disparaging terms for small people
+  name: Shrimp
+  path_wn:
+  - runt
+  - small_person
+  - person
+  - causal_agent
+  - physical_entity
+  - entity
+  path_wn10: runt small_person person causal_agent physical_entity entity
+  path_wn3: runt small_person person
+Truck:
+  clean_name: Truck
+  def_wiki: A small wheel or roller, specifically the wheel of a gun carriage.
+  def_wn: an automotive vehicle suitable for hauling
+  name: Truck
+  path_wn:
+  - truck
+  - motor_vehicle
+  - self-propelled_vehicle
+  - wheeled_vehicle
+  - container
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: truck motor_vehicle self-propelled_vehicle wheeled_vehicle container
+    instrumentality artifact whole object physical_entity
+  path_wn3: truck motor_vehicle self-propelled_vehicle
+airplane:
+  clean_name: airplane
+  def_wiki: A powered heavier-than-air aircraft with fixed wings.
+  def_wn: an aircraft that has a fixed wing and is powered by propellers or jets
+  name: airplane
+  path_wn:
+  - heavier-than-air_craft
+  - aircraft
+  - craft
+  - vehicle
+  - conveyance
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: heavier-than-air_craft aircraft craft vehicle conveyance instrumentality
+    artifact whole object physical_entity
+  path_wn3: heavier-than-air_craft aircraft craft
+bicycle:
+  clean_name: bicycle
+  def_wiki: A vehicle that has two wheels, one behind the other, a steering handle,
+    and a saddle seat or seats and is usually propelled by the action of a rider’s
+    feet upon pedals.
+  def_wn: a wheeled vehicle that has two wheels and is moved by foot pedals
+  name: bicycle
+  path_wn:
+  - wheeled_vehicle
+  - container
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: wheeled_vehicle container instrumentality artifact whole object physical_entity
+    entity
+  path_wn3: wheeled_vehicle container instrumentality
+bird:
+  clean_name: bird
+  def_wiki: A member of the class of animals Aves in the phylum Chordata, characterized
+    by being warm-blooded, having feathers and wings usually capable of flight, having
+    a beaked mouth, and laying eggs.
+  def_wn: warm-blooded egg-laying vertebrates characterized by feathers and forelimbs
+    modified as wings
+  name: bird
+  path_wn:
+  - vertebrate
+  - chordate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: vertebrate chordate animal organism living_thing whole object physical_entity
+    entity
+  path_wn3: vertebrate chordate animal
+boat:
+  clean_name: boat
+  def_wiki: A craft used for transportation of goods, fishing, racing, recreational
+    cruising, or military use on or in the water, propelled by oars or outboard motor
+    or inboard motor or by wind.
+  def_wn: a small vessel for travel on water
+  name: boat
+  path_wn:
+  - vessel
+  - craft
+  - vehicle
+  - conveyance
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: vessel craft vehicle conveyance instrumentality artifact whole object
+    physical_entity entity
+  path_wn3: vessel craft vehicle
+bottle:
+  clean_name: bottle
+  def_wiki: A container, typically made of glass or plastic and having a tapered neck,
+    used primarily for holding liquids.
+  def_wn: a glass or plastic vessel used for storing drinks or other liquids; typically
+    cylindrical without handles and with a narrow neck that can be plugged or capped
+  name: bottle
+  path_wn:
+  - vessel
+  - container
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: vessel container instrumentality artifact whole object physical_entity
+    entity
+  path_wn3: vessel container instrumentality
+bus:
+  clean_name: bus
+  def_wiki: A motor vehicle for transporting large numbers of people along roads.
+  def_wn: a vehicle carrying many passengers; used for public transport
+  name: bus
+  path_wn:
+  - public_transport
+  - conveyance
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: public_transport conveyance instrumentality artifact whole object physical_entity
+    entity
+  path_wn3: public_transport conveyance instrumentality
+car:
+  clean_name: car
+  def_wiki: A wheeled vehicle that moves independently, with at least three wheels,
+    powered mechanically, steered by a driver and mostly for personal transportation.
+  def_wn: a motor vehicle with four wheels; usually propelled by an internal combustion
+    engine
+  name: car
+  path_wn:
+  - motor_vehicle
+  - self-propelled_vehicle
+  - wheeled_vehicle
+  - container
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: motor_vehicle self-propelled_vehicle wheeled_vehicle container instrumentality
+    artifact whole object physical_entity entity
+  path_wn3: motor_vehicle self-propelled_vehicle wheeled_vehicle
+cat:
+  clean_name: cat
+  def_wiki: "An animal of the family Felidae:\n Synonym: felid"
+  def_wn: 'feline mammal usually having thick soft fur and no ability to roar: domestic
+    cats; wildcats'
+  name: cat
+  path_wn:
+  - feline
+  - carnivore
+  - placental
+  - mammal
+  - vertebrate
+  - chordate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: feline carnivore placental mammal vertebrate chordate animal organism
+    living_thing whole
+  path_wn3: feline carnivore placental
+chair:
+  clean_name: chair
+  def_wiki: An item of furniture used to sit on or in, comprising a seat, legs or
+    wheels, back, and sometimes arm rests, for use by one person. Compare stool, couch,
+    sofa, settee, loveseat and bench.
+  def_wn: a seat for one person, with a support for the back
+  name: chair
+  path_wn:
+  - seat
+  - furniture
+  - furnishing
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: seat furniture furnishing instrumentality artifact whole object physical_entity
+    entity
+  path_wn3: seat furniture furnishing
+cow:
+  clean_name: cow
+  def_wiki: An adult female of the species Bos taurus, especially one that has calved.
+  def_wn: 'female of domestic cattle:'
+  name: cow
+  path_wn:
+  - cattle
+  - bovine
+  - bovid
+  - ruminant
+  - even-toed_ungulate
+  - ungulate
+  - placental
+  - mammal
+  - vertebrate
+  - chordate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: cattle bovine bovid ruminant even-toed_ungulate ungulate placental mammal
+    vertebrate chordate
+  path_wn3: cattle bovine bovid
+dining table:
+  clean_name: dining table
+  def_wiki: A table, usually in a dining room, on which meals are served.
+  def_wn: ''
+  name: dining table
+  path_wn: ''
+  path_wn10: ''
+  path_wn3: ''
+dock:
+  clean_name: dock
+  def_wiki: Any of the genus Rumex of coarse weedy plants with small green flowers
+    related to buckwheat, especially bitter dock (Rumex obtusifolius), and used as
+    potherbs and in folk medicine, especially in curing nettle rash.
+  def_wn: an enclosure in a court of law where the defendant sits during the trial
+  name: dock
+  path_wn:
+  - enclosure
+  - area
+  - structure
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: enclosure area structure artifact whole object physical_entity entity
+  path_wn3: enclosure area structure
+dog:
+  clean_name: dog
+  def_wiki: A mammal, Canis familiaris or Canis lupus familiaris, that has been domesticated
+    for thousands of years, of highly variable appearance due to human breeding.
+  def_wn: a member of the genus Canis (probably descended from the common wolf) that
+    has been domesticated by man since prehistoric times; occurs in many breeds
+  name: dog
+  path_wn:
+  - canine
+  - carnivore
+  - placental
+  - mammal
+  - vertebrate
+  - chordate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: canine carnivore placental mammal vertebrate chordate animal organism
+    living_thing whole
+  path_wn3: canine carnivore placental
+fish:
+  clean_name: ' fish'
+  def_wiki: A cold-blooded vertebrate animal that lives in water, moving with the
+    help of fins and breathing with gills.
+  def_wn: any of various mostly cold-blooded aquatic vertebrates usually having scales
+    and breathing through gills
+  name: fish
+  path_wn:
+  - aquatic_vertebrate
+  - vertebrate
+  - chordate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: aquatic_vertebrate vertebrate chordate animal organism living_thing whole
+    object physical_entity entity
+  path_wn3: aquatic_vertebrate vertebrate chordate
+flat mushroom:
+  clean_name: flat mushroom
+  def_wiki: Any of the fleshy fruiting bodies of fungi typically produced above ground
+    on soil or on their food sources (such as decaying wood).
+  def_wn: ''
+  name: flat mushroom
+  path_wn: ''
+  path_wn10: ''
+  path_wn3: ''
+hand:
+  clean_name: ' hand of a person'
+  def_wiki: The part of the forelimb below the forearm or wrist in a human, and the
+    corresponding part in many other animals.
+  def_wn: the (prehensile) extremity of the superior limb
+  name: hand
+  path_wn:
+  - extremity
+  - external_body_part
+  - body_part
+  - part
+  - thing
+  - physical_entity
+  - entity
+  path_wn10: extremity external_body_part body_part part thing physical_entity entity
+  path_wn3: extremity external_body_part body_part
+hole:
+  clean_name: there are some holes on the road
+  def_wiki: A hollow place or cavity; an excavation; a pit; an opening in or through
+    a solid body, a fabric, etc.; a perforation; a rent; a fissure.
+  def_wn: an opening into or through something
+  name: hole
+  path_wn:
+  - opening
+  - space
+  - amorphous_shape
+  - shape
+  - attribute
+  - abstraction
+  - entity
+  path_wn10: opening space amorphous_shape shape attribute abstraction entity
+  path_wn3: opening space amorphous_shape
+horse:
+  clean_name: horse
+  def_wiki: Any of several animals related to Equus ferus caballus.
+  def_wn: solid-hoofed herbivorous quadruped domesticated since prehistoric times
+  name: horse
+  path_wn:
+  - equine
+  - odd-toed_ungulate
+  - ungulate
+  - placental
+  - mammal
+  - vertebrate
+  - chordate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: equine odd-toed_ungulate ungulate placental mammal vertebrate chordate
+    animal organism living_thing
+  path_wn3: equine odd-toed_ungulate ungulate
+jellyfish:
+  clean_name: jellyfish
+  def_wiki: An almost transparent aquatic animal; any one of the acalephs, especially
+    one of the larger species, having a jellylike appearance.
+  def_wn: large siphonophore having a bladderlike float and stinging tentacles
+  name: jellyfish
+  path_wn:
+  - Portuguese_man-of-war
+  - siphonophore
+  - hydrozoan
+  - coelenterate
+  - invertebrate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: Portuguese_man-of-war siphonophore hydrozoan coelenterate invertebrate
+    animal organism living_thing whole object
+  path_wn3: Portuguese_man-of-war siphonophore hydrozoan
+jetski:
+  clean_name: jetski
+  def_wiki: A powered watercraft with a seat and handlebars in a style similar to
+    a motorbike.
+  def_wn: ''
+  name: jetski
+  path_wn: ''
+  path_wn10: ''
+  path_wn3: ''
+lift:
+  clean_name: lift
+  def_wiki: To raise or rise.
+  def_wn: the act of giving temporary assistance
+  name: lift
+  path_wn:
+  - aid
+  - activity
+  - act
+  - event
+  - psychological_feature
+  - abstraction
+  - entity
+  path_wn10: aid activity act event psychological_feature abstraction entity
+  path_wn3: aid activity act
+motorbike:
+  clean_name: motorbike
+  def_wiki: A motorcycle.
+  def_wn: small motorcycle with a low frame and small wheels and elevated handlebars
+  name: motorbike
+  path_wn:
+  - minibike
+  - motorcycle
+  - motor_vehicle
+  - self-propelled_vehicle
+  - wheeled_vehicle
+  - container
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: minibike motorcycle motor_vehicle self-propelled_vehicle wheeled_vehicle
+    container instrumentality artifact whole object
+  path_wn3: minibike motorcycle motor_vehicle
+package:
+  clean_name: there is a package on the porch
+  def_wiki: Something which is packed, a parcel, a box, an envelope.
+  def_wn: a collection of things wrapped or boxed together
+  name: package
+  path_wn:
+  - collection
+  - group
+  - abstraction
+  - entity
+  path_wn10: collection group abstraction entity
+  path_wn3: collection group abstraction
+penguin:
+  clean_name: penguin , which is black and white
+  def_wiki: Any of several flightless sea birds, of order Sphenisciformes, found in
+    the Southern Hemisphere, marked by their usual upright stance, walking on short
+    legs, and (generally) their stark black and white plumage.
+  def_wn: short-legged flightless birds of cold southern especially Antarctic regions
+    having webbed feet and wings modified as flippers
+  name: penguin
+  path_wn:
+  - sphenisciform_seabird
+  - seabird
+  - aquatic_bird
+  - bird
+  - vertebrate
+  - chordate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: sphenisciform_seabird seabird aquatic_bird bird vertebrate chordate animal
+    organism living_thing whole
+  path_wn3: sphenisciform_seabird seabird aquatic_bird
+person:
+  clean_name: person
+  def_wiki: 'An individual; usually a human being. [from 13th c.]
+
+
+    Each person is unique, both mentally and physically.'
+  def_wn: a human being
+  name: person
+  path_wn:
+  - causal_agent
+  - physical_entity
+  - entity
+  path_wn10: causal_agent physical_entity entity
+  path_wn3: causal_agent physical_entity entity
+pistol:
+  clean_name: pistol
+  def_wiki: A handgun, typically with a chamber integrated in the barrel, a semi-automatic
+    action and a box magazine.
+  def_wn: a firearm that is held and fired with one hand
+  name: pistol
+  path_wn:
+  - firearm
+  - gun
+  - weapon  
+  - instrument
+  - device
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: firearm gun weapon instrument device instrumentality artifact whole object
+    physical_entity
+  path_wn3: firearm gun weapon
+potted plant:
+  clean_name: potted plant
+  def_wiki: A plant growing in a flowerpot; a houseplant.
+  def_wn: ''
+  name: potted plant
+  path_wn: ''
+  path_wn10: ''
+  path_wn3: ''
+puffin:
+  clean_name: 'puffin with orange beaks '
+  def_wiki: The young of the Manx shearwater (Puffinus puffinus), especially eaten
+    as food.
+  def_wn: any of two genera of northern seabirds having short necks and brightly colored
+    compressed bills
+  name: puffin
+  path_wn:
+  - seabird
+  - aquatic_bird
+  - bird
+  - vertebrate
+  - chordate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: seabird aquatic_bird bird vertebrate chordate animal organism living_thing
+    whole object
+  path_wn3: seabird aquatic_bird bird
+rabbit:
+  clean_name: rabbit
+  def_wiki: A mammal of the family Leporidae, with long ears, long hind legs and a
+    short, fluffy tail.
+  def_wn: any of various burrowing animals of the family Leporidae having long ears
+    and short tails; some domesticated and raised for pets or food
+  name: rabbit
+  path_wn:
+  - leporid
+  - lagomorph
+  - placental
+  - mammal
+  - vertebrate
+  - chordate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: leporid lagomorph placental mammal vertebrate chordate animal organism
+    living_thing whole
+  path_wn3: leporid lagomorph placental
+raccoon:
+  clean_name: raccoon
+  def_wiki: A nocturnal omnivore native to North America, typically with a mixture
+    of gray, brown, and black fur, a mask-like marking around the eyes and a striped
+    tail; Procyon lotor.
+  def_wn: the fur of the North American racoon
+  name: raccoon
+  path_wn:
+  - fur
+  - animal_skin
+  - animal_product
+  - animal_material
+  - material
+  - substance
+  - matter
+  - physical_entity
+  - entity
+  path_wn10: fur animal_skin animal_product animal_material material substance matter
+    physical_entity entity
+  path_wn3: fur animal_skin animal_product
+shark:
+  clean_name: shark
+  def_wiki: A scaleless, predatory fish of the superorder Selachimorpha, with a cartilaginous
+    skeleton and 5 to 7 gill slits on each side of its head.
+  def_wn: any of numerous elongate mostly marine carnivorous fishes with heterocercal
+    caudal fins and tough skin covered with small toothlike scales
+  name: shark
+  path_wn:
+  - elasmobranch
+  - cartilaginous_fish
+  - fish
+  - aquatic_vertebrate
+  - vertebrate
+  - chordate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: elasmobranch cartilaginous_fish fish aquatic_vertebrate vertebrate chordate
+    animal organism living_thing whole
+  path_wn3: elasmobranch cartilaginous_fish fish
+sheep:
+  clean_name: sheep
+  def_wiki: A woolly ruminant of the genus Ovis.
+  def_wn: woolly usually horned ruminant mammal related to the goat
+  name: sheep
+  path_wn:
+  - bovid
+  - ruminant
+  - even-toed_ungulate
+  - ungulate
+  - placental
+  - mammal
+  - vertebrate
+  - chordate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: bovid ruminant even-toed_ungulate ungulate placental mammal vertebrate
+    chordate animal organism
+  path_wn3: bovid ruminant even-toed_ungulate
+sofa:
+  clean_name: sofa
+  def_wiki: A raised area of a building's floor, usually covered with carpeting, used
+    for sitting.
+  def_wn: an upholstered seat for more than one person
+  name: sofa
+  path_wn:
+  - seat
+  - furniture
+  - furnishing
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: seat furniture furnishing instrumentality artifact whole object physical_entity
+    entity
+  path_wn3: seat furniture furnishing
+starfish:
+  clean_name: starfish
+  def_wiki: Any of various asteroids or other echinoderms (not in fact fish) with
+    usually five arms, many of which eat bivalves or corals by everting their stomach.
+  def_wn: echinoderms characterized by five arms extending from a central disk
+  name: starfish
+  path_wn:
+  - echinoderm
+  - invertebrate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: echinoderm invertebrate animal organism living_thing whole object physical_entity
+    entity
+  path_wn3: echinoderm invertebrate animal
+stingray:
+  clean_name: stingray which is flat and round
+  def_wiki: Any of various large, venomous rays, of the orders Rajiformes and Myliobatiformes,
+    having a barbed, whiplike tail.
+  def_wn: large venomous ray with large barbed spines near the base of a thin whiplike
+    tail capable of inflicting severe wounds
+  name: stingray
+  path_wn:
+  - ray
+  - elasmobranch
+  - cartilaginous_fish
+  - fish
+  - aquatic_vertebrate
+  - vertebrate
+  - chordate
+  - animal
+  - organism
+  - living_thing
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: ray elasmobranch cartilaginous_fish fish aquatic_vertebrate vertebrate
+    chordate animal organism living_thing
+  path_wn3: ray elasmobranch cartilaginous_fish
+train:
+  clean_name: train
+  def_wiki: Elongated portion.
+  def_wn: public transport provided by a line of railway cars coupled together and
+    drawn by a locomotive
+  name: train
+  path_wn:
+  - public_transport
+  - conveyance
+  - instrumentality
+  - artifact
+  - whole
+  - object
+  - physical_entity
+  - entity
+  path_wn10: public_transport conveyance instrumentality artifact whole object physical_entity
+    entity
+  path_wn3: public_transport conveyance instrumentality
+tv monitor:
+  clean_name: tv monitor
+  def_wiki: Someone who watches over something; a person in charge of something or
+    someone.
+  def_wn: ''
+  name: tv monitor
+  path_wn: ''
+  path_wn10: ''
+  path_wn3: ''
+yellow mushroom:
+  clean_name: yellow mushroom
+  def_wiki: Any of the fleshy fruiting bodies of fungi typically produced above ground
+    on soil or on their food sources (such as decaying wood).
+  def_wn: ''
+  name: yellow mushroom
+  path_wn: ''
+  path_wn10: ''
+  path_wn3: ''

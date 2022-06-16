@@ -312,6 +312,9 @@ def main():
     parser.add_argument("--evaluate_only_best_on_test", action="store_true") # just a dummpy parameter; only used in eval_all.py, add it here so it does not complain...
     parser.add_argument("--push_both_val_and_test", action="store_true") # just a dummpy parameter; only used in eval_all.py, add it here so it does not complain...
 
+    parser.add_argument('--use_prepared_data', action='store_true')
+
+
     parser.add_argument("--keep_testing", action="store_true")
 
     args = parser.parse_args()
@@ -382,9 +385,20 @@ def main():
                 custom_shot = int(args.custom_shot_and_epoch_and_general_copy.split("_")[0])
                 custom_epoch = int(args.custom_shot_and_epoch_and_general_copy.split("_")[1])
                 custom_copy = int(args.custom_shot_and_epoch_and_general_copy.split("_")[2])
-                cfg_.DATASETS.FEW_SHOT = custom_shot
                 cfg_.SOLVER.MAX_EPOCH = custom_epoch
                 cfg_.DATASETS.GENERAL_COPY = custom_copy
+                if args.use_prepared_data:
+                    if custom_shot != 0: # 0 means full data training
+                        cfg_.DATASETS.TRAIN = ("{}_{}_{}".format(cfg_.DATASETS.TRAIN[0], custom_shot, cfg_.DATASETS.SHUFFLE_SEED), )
+                        try:
+                            custom_shot_val = int(args.custom_shot_and_epoch_and_general_copy.split("_")[3])
+                        except:
+                            custom_shot_val = custom_shot
+                        cfg_.DATASETS.TEST = ("{}_{}_{}".format(cfg_.DATASETS.TEST[0], custom_shot_val, cfg_.DATASETS.SHUFFLE_SEED), )
+                        if custom_shot_val == 1 or custom_shot_val == 3:
+                            cfg_.DATASETS.GENERAL_COPY_TEST = 4 # to avoid less images than GPUs
+                else:
+                    cfg_.DATASETS.FEW_SHOT = custom_shot
             else:
                 custom_shot = None
                 custom_epoch = None

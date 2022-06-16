@@ -1,0 +1,136 @@
+DATALOADER:
+  ASPECT_RATIO_GROUPING: false
+  SIZE_DIVISIBILITY: 32
+DATASETS:
+  GENERAL_COPY: 4
+  OVERRIDE_CATEGORY: '[{"id": 1, "name": "Apple Scab Leaf", "supercategory": "leaves"},
+    {"id": 2, "name": "Apple leaf", "supercategory": "leaves"}, {"id": 3, "name":
+    "Apple rust leaf", "supercategory": "leaves"}, {"id": 4, "name": "Bell_pepper
+    leaf", "supercategory": "leaves"}, {"id": 5, "name": "Bell_pepper leaf spot",
+    "supercategory": "leaves"}, {"id": 6, "name": "Blueberry leaf", "supercategory":
+    "leaves"}, {"id": 7, "name": "Cherry leaf", "supercategory": "leaves"}, {"id":
+    8, "name": "Corn Gray leaf spot", "supercategory": "leaves"}, {"id": 9, "name":
+    "Corn leaf blight", "supercategory": "leaves"}, {"id": 10, "name": "Corn rust
+    leaf", "supercategory": "leaves"}, {"id": 11, "name": "Peach leaf", "supercategory":
+    "leaves"}, {"id": 12, "name": "Potato leaf", "supercategory": "leaves"}, {"id":
+    13, "name": "Potato leaf early blight", "supercategory": "leaves"}, {"id": 14,
+    "name": "Potato leaf late blight", "supercategory": "leaves"}, {"id": 15, "name":
+    "Raspberry leaf", "supercategory": "leaves"}, {"id": 16, "name": "Soyabean leaf",
+    "supercategory": "leaves"}, {"id": 17, "name": "Soybean leaf", "supercategory":
+    "leaves"}, {"id": 18, "name": "Squash Powdery mildew leaf", "supercategory": "leaves"},
+    {"id": 19, "name": "Strawberry leaf", "supercategory": "leaves"}, {"id": 20, "name":
+    "Tomato Early blight leaf", "supercategory": "leaves"}, {"id": 21, "name": "Tomato
+    Septoria leaf spot", "supercategory": "leaves"}, {"id": 22, "name": "Tomato leaf",
+    "supercategory": "leaves"}, {"id": 23, "name": "Tomato leaf bacterial spot", "supercategory":
+    "leaves"}, {"id": 24, "name": "Tomato leaf late blight", "supercategory": "leaves"},
+    {"id": 25, "name": "Tomato leaf mosaic virus", "supercategory": "leaves"}, {"id":
+    26, "name": "Tomato leaf yellow virus", "supercategory": "leaves"}, {"id": 27,
+    "name": "Tomato mold leaf", "supercategory": "leaves"}, {"id": 28, "name": "Tomato
+    two spotted spider mites leaf", "supercategory": "leaves"}, {"id": 29, "name":
+    "grape leaf", "supercategory": "leaves"}, {"id": 30, "name": "grape leaf black
+    rot", "supercategory": "leaves"}]'
+  PREDEFINED_TEXT: odinw/pothole/category_description.json
+  REGISTER:
+    test:
+      ann_file: odinw/plantdoc/100x100/test/annotations_without_background.json
+      img_dir: odinw/plantdoc/100x100/test
+    train:
+      ann_file: odinw/plantdoc/100x100/train/annotations_without_background.json
+      img_dir: odinw/plantdoc/100x100/train
+    train_10_3:
+      ann_file: odinw/plantdoc/100x100/train/fewshot_train_shot10_seed3.json
+      img_dir: odinw/plantdoc/100x100/train
+    train_10_30:
+      ann_file: odinw/plantdoc/100x100/train/fewshot_train_shot10_seed30.json
+      img_dir: odinw/plantdoc/100x100/train
+    train_10_300:
+      ann_file: odinw/plantdoc/100x100/train/fewshot_train_shot10_seed300.json
+      img_dir: odinw/plantdoc/100x100/train
+    train_1_3:
+      ann_file: odinw/plantdoc/100x100/train/fewshot_train_shot1_seed3.json
+      img_dir: odinw/plantdoc/100x100/train
+    train_1_30:
+      ann_file: odinw/plantdoc/100x100/train/fewshot_train_shot1_seed30.json
+      img_dir: odinw/plantdoc/100x100/train
+    train_1_300:
+      ann_file: odinw/plantdoc/100x100/train/fewshot_train_shot1_seed300.json
+      img_dir: odinw/plantdoc/100x100/train
+    train_3_3:
+      ann_file: odinw/plantdoc/100x100/train/fewshot_train_shot3_seed3.json
+      img_dir: odinw/plantdoc/100x100/train
+    train_3_30:
+      ann_file: odinw/plantdoc/100x100/train/fewshot_train_shot3_seed30.json
+      img_dir: odinw/plantdoc/100x100/train
+    train_3_300:
+      ann_file: odinw/plantdoc/100x100/train/fewshot_train_shot3_seed300.json
+      img_dir: odinw/plantdoc/100x100/train
+    train_5_3:
+      ann_file: odinw/plantdoc/100x100/train/fewshot_train_shot5_seed3.json
+      img_dir: odinw/plantdoc/100x100/train
+    train_5_30:
+      ann_file: odinw/plantdoc/100x100/train/fewshot_train_shot5_seed30.json
+      img_dir: odinw/plantdoc/100x100/train
+    train_5_300:
+      ann_file: odinw/plantdoc/100x100/train/fewshot_train_shot5_seed300.json
+      img_dir: odinw/plantdoc/100x100/train
+    val:
+      ann_file: odinw/plantdoc/100x100/valid/annotations_without_background.json
+      img_dir: odinw/plantdoc/100x100/valid
+    val_10_3:
+      ann_file: odinw/plantdoc/100x100/valid/fewshot_val_shot10_seed3.json
+      img_dir: odinw/plantdoc/100x100/valid
+    val_10_30:
+      ann_file: odinw/plantdoc/100x100/valid/fewshot_val_shot10_seed30.json
+      img_dir: odinw/plantdoc/100x100/valid
+    val_10_300:
+      ann_file: odinw/plantdoc/100x100/valid/fewshot_val_shot10_seed300.json
+      img_dir: odinw/plantdoc/100x100/valid
+    val_1_3:
+      ann_file: odinw/plantdoc/100x100/valid/fewshot_val_shot1_seed3.json
+      img_dir: odinw/plantdoc/100x100/valid
+    val_1_30:
+      ann_file: odinw/plantdoc/100x100/valid/fewshot_val_shot1_seed30.json
+      img_dir: odinw/plantdoc/100x100/valid
+    val_1_300:
+      ann_file: odinw/plantdoc/100x100/valid/fewshot_val_shot1_seed300.json
+      img_dir: odinw/plantdoc/100x100/valid
+    val_3_3:
+      ann_file: odinw/plantdoc/100x100/valid/fewshot_val_shot3_seed3.json
+      img_dir: odinw/plantdoc/100x100/valid
+    val_3_30:
+      ann_file: odinw/plantdoc/100x100/valid/fewshot_val_shot3_seed30.json
+      img_dir: odinw/plantdoc/100x100/valid
+    val_3_300:
+      ann_file: odinw/plantdoc/100x100/valid/fewshot_val_shot3_seed300.json
+      img_dir: odinw/plantdoc/100x100/valid
+    val_5_3:
+      ann_file: odinw/plantdoc/100x100/valid/fewshot_val_shot5_seed3.json
+      img_dir: odinw/plantdoc/100x100/valid
+    val_5_30:
+      ann_file: odinw/plantdoc/100x100/valid/fewshot_val_shot5_seed30.json
+      img_dir: odinw/plantdoc/100x100/valid
+    val_5_300:
+      ann_file: odinw/plantdoc/100x100/valid/fewshot_val_shot5_seed300.json
+      img_dir: odinw/plantdoc/100x100/valid
+  TEST: ("val",)
+  TRAIN: ("train",)
+INPUT:
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: 800
+MODEL:
+  ATSS:
+    NUM_CLASSES: 31
+  DYHEAD:
+    NUM_CLASSES: 31
+  FCOS:
+    NUM_CLASSES: 31
+  ROI_BOX_HEAD:
+    NUM_CLASSES: 31
+SOLVER:
+  CHECKPOINT_PERIOD: 100
+  MAX_EPOCH: 12
+  WARMUP_ITERS: 0
+TEST:
+  IMS_PER_BATCH: 8

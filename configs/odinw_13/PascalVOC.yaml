@@ -1,0 +1,124 @@
+DATALOADER:
+  ASPECT_RATIO_GROUPING: false
+  SIZE_DIVISIBILITY: 32
+DATASETS:
+  GENERAL_COPY: 4
+  OVERRIDE_CATEGORY: '[{"id": 1, "name": "aeroplane", "supercategory": "VOC"}, {"id":
+    2, "name": "bicycle", "supercategory": "VOC"}, {"id": 3, "name": "bird", "supercategory":
+    "VOC"}, {"id": 4, "name": "boat", "supercategory": "VOC"}, {"id": 5, "name": "bottle",
+    "supercategory": "VOC"}, {"id": 6, "name": "bus", "supercategory": "VOC"}, {"id":
+    7, "name": "car", "supercategory": "VOC"}, {"id": 8, "name": "cat", "supercategory":
+    "VOC"}, {"id": 9, "name": "chair", "supercategory": "VOC"}, {"id": 10, "name":
+    "cow", "supercategory": "VOC"}, {"id": 11, "name": "diningtable", "supercategory":
+    "VOC"}, {"id": 12, "name": "dog", "supercategory": "VOC"}, {"id": 13, "name":
+    "horse", "supercategory": "VOC"}, {"id": 14, "name": "motorbike", "supercategory":
+    "VOC"}, {"id": 15, "name": "person", "supercategory": "VOC"}, {"id": 16, "name":
+    "pottedplant", "supercategory": "VOC"}, {"id": 17, "name": "sheep", "supercategory":
+    "VOC"}, {"id": 18, "name": "sofa", "supercategory": "VOC"}, {"id": 19, "name":
+    "train", "supercategory": "VOC"}, {"id": 20, "name": "tvmonitor", "supercategory":
+    "VOC"}]'
+  PREDEFINED_TEXT: odinw/pothole/category_description.json
+  REGISTER:
+    test:
+      ann_file: odinw/PascalVOC/valid/annotations_without_background.json
+      img_dir: odinw/PascalVOC/valid
+    train:
+      ann_file: odinw/PascalVOC/train/annotations_without_background.json
+      img_dir: odinw/PascalVOC/train
+    train_10_3:
+      ann_file: odinw/PascalVOC/train/fewshot_train_shot10_seed3.json
+      img_dir: odinw/PascalVOC/train
+    train_10_30:
+      ann_file: odinw/PascalVOC/train/fewshot_train_shot10_seed30.json
+      img_dir: odinw/PascalVOC/train
+    train_10_300:
+      ann_file: odinw/PascalVOC/train/fewshot_train_shot10_seed300.json
+      img_dir: odinw/PascalVOC/train
+    train_1_3:
+      ann_file: odinw/PascalVOC/train/fewshot_train_shot1_seed3.json
+      img_dir: odinw/PascalVOC/train
+    train_1_30:
+      ann_file: odinw/PascalVOC/train/fewshot_train_shot1_seed30.json
+      img_dir: odinw/PascalVOC/train
+    train_1_300:
+      ann_file: odinw/PascalVOC/train/fewshot_train_shot1_seed300.json
+      img_dir: odinw/PascalVOC/train
+    train_3_3:
+      ann_file: odinw/PascalVOC/train/fewshot_train_shot3_seed3.json
+      img_dir: odinw/PascalVOC/train
+    train_3_30:
+      ann_file: odinw/PascalVOC/train/fewshot_train_shot3_seed30.json
+      img_dir: odinw/PascalVOC/train
+    train_3_300:
+      ann_file: odinw/PascalVOC/train/fewshot_train_shot3_seed300.json
+      img_dir: odinw/PascalVOC/train
+    train_5_3:
+      ann_file: odinw/PascalVOC/train/fewshot_train_shot5_seed3.json
+      img_dir: odinw/PascalVOC/train
+    train_5_30:
+      ann_file: odinw/PascalVOC/train/fewshot_train_shot5_seed30.json
+      img_dir: odinw/PascalVOC/train
+    train_5_300:
+      ann_file: odinw/PascalVOC/train/fewshot_train_shot5_seed300.json
+      img_dir: odinw/PascalVOC/train
+    val:
+      ann_file: odinw/PascalVOC/valid/annotations_without_background.json
+      img_dir: odinw/PascalVOC/valid
+    val_10_3:
+      ann_file: odinw/PascalVOC/valid/fewshot_val_shot10_seed3.json
+      img_dir: odinw/PascalVOC/valid
+    val_10_30:
+      ann_file: odinw/PascalVOC/valid/fewshot_val_shot10_seed30.json
+      img_dir: odinw/PascalVOC/valid
+    val_10_300:
+      ann_file: odinw/PascalVOC/valid/fewshot_val_shot10_seed300.json
+      img_dir: odinw/PascalVOC/valid
+    val_1_3:
+      ann_file: odinw/PascalVOC/valid/fewshot_val_shot1_seed3.json
+      img_dir: odinw/PascalVOC/valid
+    val_1_30:
+      ann_file: odinw/PascalVOC/valid/fewshot_val_shot1_seed30.json
+      img_dir: odinw/PascalVOC/valid
+    val_1_300:
+      ann_file: odinw/PascalVOC/valid/fewshot_val_shot1_seed300.json
+      img_dir: odinw/PascalVOC/valid
+    val_3_3:
+      ann_file: odinw/PascalVOC/valid/fewshot_val_shot3_seed3.json
+      img_dir: odinw/PascalVOC/valid
+    val_3_30:
+      ann_file: odinw/PascalVOC/valid/fewshot_val_shot3_seed30.json
+      img_dir: odinw/PascalVOC/valid
+    val_3_300:
+      ann_file: odinw/PascalVOC/valid/fewshot_val_shot3_seed300.json
+      img_dir: odinw/PascalVOC/valid
+    val_5_3:
+      ann_file: odinw/PascalVOC/valid/fewshot_val_shot5_seed3.json
+      img_dir: odinw/PascalVOC/valid
+    val_5_30:
+      ann_file: odinw/PascalVOC/valid/fewshot_val_shot5_seed30.json
+      img_dir: odinw/PascalVOC/valid
+    val_5_300:
+      ann_file: odinw/PascalVOC/valid/fewshot_val_shot5_seed300.json
+      img_dir: odinw/PascalVOC/valid
+  TEST: ("val",)
+  TRAIN: ("train",)
+INPUT:
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: 800
+MODEL:
+  ATSS:
+    NUM_CLASSES: 21
+  DYHEAD:
+    NUM_CLASSES: 21
+  FCOS:
+    NUM_CLASSES: 21
+  ROI_BOX_HEAD:
+    NUM_CLASSES: 21
+SOLVER:
+  CHECKPOINT_PERIOD: 100
+  MAX_EPOCH: 12
+  WARMUP_ITERS: 0
+TEST:
+  IMS_PER_BATCH: 8

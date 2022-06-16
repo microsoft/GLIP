@@ -1,0 +1,126 @@
+DATALOADER:
+  ASPECT_RATIO_GROUPING: false
+  SIZE_DIVISIBILITY: 32
+DATASETS:
+  GENERAL_COPY: 4
+  OVERRIDE_CATEGORY: '[{"id": 1, "name": "A", "supercategory": "Letters"}, {"id":
+    2, "name": "B", "supercategory": "Letters"}, {"id": 3, "name": "C", "supercategory":
+    "Letters"}, {"id": 4, "name": "D", "supercategory": "Letters"}, {"id": 5, "name":
+    "E", "supercategory": "Letters"}, {"id": 6, "name": "F", "supercategory": "Letters"},
+    {"id": 7, "name": "G", "supercategory": "Letters"}, {"id": 8, "name": "H", "supercategory":
+    "Letters"}, {"id": 9, "name": "I", "supercategory": "Letters"}, {"id": 10, "name":
+    "J", "supercategory": "Letters"}, {"id": 11, "name": "K", "supercategory": "Letters"},
+    {"id": 12, "name": "L", "supercategory": "Letters"}, {"id": 13, "name": "M", "supercategory":
+    "Letters"}, {"id": 14, "name": "N", "supercategory": "Letters"}, {"id": 15, "name":
+    "O", "supercategory": "Letters"}, {"id": 16, "name": "P", "supercategory": "Letters"},
+    {"id": 17, "name": "Q", "supercategory": "Letters"}, {"id": 18, "name": "R", "supercategory":
+    "Letters"}, {"id": 19, "name": "S", "supercategory": "Letters"}, {"id": 20, "name":
+    "T", "supercategory": "Letters"}, {"id": 21, "name": "U", "supercategory": "Letters"},
+    {"id": 22, "name": "V", "supercategory": "Letters"}, {"id": 23, "name": "W", "supercategory":
+    "Letters"}, {"id": 24, "name": "X", "supercategory": "Letters"}, {"id": 25, "name":
+    "Y", "supercategory": "Letters"}, {"id": 26, "name": "Z", "supercategory": "Letters"}]'
+  PREDEFINED_TEXT: odinw/pothole/category_description.json
+  REGISTER:
+    test:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/test/annotations_without_background.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/test
+    train:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/annotations_without_background.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    train_10_3:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/fewshot_train_shot10_seed3.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    train_10_30:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/fewshot_train_shot10_seed30.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    train_10_300:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/fewshot_train_shot10_seed300.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    train_1_3:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/fewshot_train_shot1_seed3.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    train_1_30:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/fewshot_train_shot1_seed30.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    train_1_300:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/fewshot_train_shot1_seed300.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    train_3_3:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/fewshot_train_shot3_seed3.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    train_3_30:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/fewshot_train_shot3_seed30.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    train_3_300:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/fewshot_train_shot3_seed300.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    train_5_3:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/fewshot_train_shot5_seed3.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    train_5_30:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/fewshot_train_shot5_seed30.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    train_5_300:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train/fewshot_train_shot5_seed300.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/train
+    val:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/annotations_without_background.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+    val_10_3:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/fewshot_val_shot10_seed3.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+    val_10_30:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/fewshot_val_shot10_seed30.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+    val_10_300:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/fewshot_val_shot10_seed300.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+    val_1_3:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/fewshot_val_shot1_seed3.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+    val_1_30:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/fewshot_val_shot1_seed30.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+    val_1_300:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/fewshot_val_shot1_seed300.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+    val_3_3:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/fewshot_val_shot3_seed3.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+    val_3_30:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/fewshot_val_shot3_seed30.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+    val_3_300:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/fewshot_val_shot3_seed300.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+    val_5_3:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/fewshot_val_shot5_seed3.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+    val_5_30:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/fewshot_val_shot5_seed30.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+    val_5_300:
+      ann_file: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid/fewshot_val_shot5_seed300.json
+      img_dir: odinw/AmericanSignLanguageLetters/American Sign Language Letters.v1-v1.coco/valid
+  TEST: ("val",)
+  TRAIN: ("train",)
+INPUT:
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: 800
+MODEL:
+  ATSS:
+    NUM_CLASSES: 27
+  DYHEAD:
+    NUM_CLASSES: 27
+  FCOS:
+    NUM_CLASSES: 27
+  ROI_BOX_HEAD:
+    NUM_CLASSES: 27
+SOLVER:
+  CHECKPOINT_PERIOD: 100
+  MAX_EPOCH: 12
+  WARMUP_ITERS: 0
+TEST:
+  IMS_PER_BATCH: 8

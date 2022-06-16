@@ -1,0 +1,3 @@
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val", )

@@ -1,0 +1,133 @@
+DATALOADER:
+  ASPECT_RATIO_GROUPING: false
+  SIZE_DIVISIBILITY: 32
+DATASETS:
+  GENERAL_COPY: 16
+  OVERRIDE_CATEGORY: '[{"id": 1, "name": "Q", "supercategory": "letters"}, {"id":
+    2, "name": "a", "supercategory": "letters"}, {"id": 3, "name": "an", "supercategory":
+    "letters"}, {"id": 4, "name": "b", "supercategory": "letters"}, {"id": 5, "name":
+    "c", "supercategory": "letters"}, {"id": 6, "name": "d", "supercategory": "letters"},
+    {"id": 7, "name": "e", "supercategory": "letters"}, {"id": 8, "name": "er", "supercategory":
+    "letters"}, {"id": 9, "name": "f", "supercategory": "letters"}, {"id": 10, "name":
+    "g", "supercategory": "letters"}, {"id": 11, "name": "h", "supercategory": "letters"},
+    {"id": 12, "name": "he", "supercategory": "letters"}, {"id": 13, "name": "i",
+    "supercategory": "letters"}, {"id": 14, "name": "in", "supercategory": "letters"},
+    {"id": 15, "name": "j", "supercategory": "letters"}, {"id": 16, "name": "k", "supercategory":
+    "letters"}, {"id": 17, "name": "l", "supercategory": "letters"}, {"id": 18, "name":
+    "m", "supercategory": "letters"}, {"id": 19, "name": "n", "supercategory": "letters"},
+    {"id": 20, "name": "o", "supercategory": "letters"}, {"id": 21, "name": "o ",
+    "supercategory": "letters"}, {"id": 22, "name": "p", "supercategory": "letters"},
+    {"id": 23, "name": "q", "supercategory": "letters"}, {"id": 24, "name": "qu",
+    "supercategory": "letters"}, {"id": 25, "name": "r", "supercategory": "letters"},
+    {"id": 26, "name": "s", "supercategory": "letters"}, {"id": 27, "name": "t", "supercategory":
+    "letters"}, {"id": 28, "name": "t\\", "supercategory": "letters"}, {"id": 29,
+    "name": "th", "supercategory": "letters"}, {"id": 30, "name": "u", "supercategory":
+    "letters"}, {"id": 31, "name": "v", "supercategory": "letters"}, {"id": 32, "name":
+    "w", "supercategory": "letters"}, {"id": 33, "name": "wild", "supercategory":
+    "letters"}, {"id": 34, "name": "x", "supercategory": "letters"}, {"id": 35, "name":
+    "y", "supercategory": "letters"}, {"id": 36, "name": "z", "supercategory": "letters"}]'
+  PREDEFINED_TEXT: odinw/pothole/category_description.json
+  REGISTER:
+    test:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/test_annotations_without_background.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/train_annotations_without_background.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train_10_3:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_train_shot10_seed3.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train_10_30:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_train_shot10_seed30.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train_10_300:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_train_shot10_seed300.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train_1_3:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_train_shot1_seed3.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train_1_30:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_train_shot1_seed30.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train_1_300:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_train_shot1_seed300.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train_3_3:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_train_shot3_seed3.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train_3_30:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_train_shot3_seed30.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train_3_300:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_train_shot3_seed300.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train_5_3:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_train_shot5_seed3.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train_5_30:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_train_shot5_seed30.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    train_5_300:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_train_shot5_seed300.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/val_annotations_without_background.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val_10_3:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_val_shot10_seed3.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val_10_30:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_val_shot10_seed30.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val_10_300:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_val_shot10_seed300.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val_1_3:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_val_shot1_seed3.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val_1_30:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_val_shot1_seed30.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val_1_300:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_val_shot1_seed300.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val_3_3:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_val_shot3_seed3.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val_3_30:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_val_shot3_seed30.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val_3_300:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_val_shot3_seed300.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val_5_3:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_val_shot5_seed3.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val_5_30:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_val_shot5_seed30.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+    val_5_300:
+      ann_file: odinw/boggleBoards/416x416AutoOrient/export/fewshot_val_shot5_seed300.json
+      img_dir: odinw/boggleBoards/416x416AutoOrient/export/
+  TEST: ("val",)
+  TRAIN: ("train",)
+INPUT:
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: 800
+MODEL:
+  ATSS:
+    NUM_CLASSES: 35
+  DYHEAD:
+    NUM_CLASSES: 35
+  FCOS:
+    NUM_CLASSES: 35
+  ROI_BOX_HEAD:
+    NUM_CLASSES: 35
+SOLVER:
+  CHECKPOINT_PERIOD: 100
+  MAX_EPOCH: 12
+  WARMUP_ITERS: 0
+TEST:
+  IMS_PER_BATCH: 8

@@ -15,8 +15,27 @@ from ..utils.comm import all_gather
 from ..utils.comm import synchronize
 import pdb
 from maskrcnn_benchmark.data.datasets.evaluation.flickr.flickr_eval import FlickrEvaluator
-
-
+from maskrcnn_benchmark.structures.bounding_box import BoxList
+import matplotlib.pyplot as plt
+import matplotlib.pylab as pylab
+from maskrcnn_benchmark.data.datasets.tsv import load_from_yaml_file
+def imshow(img, file_name = "tmp.jpg"):
+    plt.imshow(img[:, :, [2, 1, 0]])
+    plt.axis("off")
+    #plt.figtext(0.5, 0.09, "test", wrap=True, horizontalalignment='center', fontsize=20)
+    plt.savefig(file_name)
+def load(url_or_file_name):
+    try:
+        response = requests.get(url_or_file_name)
+    except:
+        response = None
+    if response is None:
+        pil_image = Image.open(url_or_file_name).convert("RGB")
+    else:
+        pil_image = Image.open(BytesIO(response.content)).convert("RGB")
+    # convert to BGR format
+    image = np.array(pil_image)[:, :, [2, 1, 0]]
+    return image
 def inference_default(
         model,
         data_loader,
@@ -192,6 +211,7 @@ def create_queries_and_maps_from_dataset(dataset, cfg):
 def create_queries_and_maps(labels, label_list, additional_labels = None, cfg = None):
 
     # Clean label list
+    original_label_list = label_list.copy()
     label_list = [clean_name(i) for i in label_list]
     # Form the query and get the mapping
     tokens_positive = []
@@ -203,6 +223,8 @@ def create_queries_and_maps(labels, label_list, additional_labels = None, cfg = 
     separation_tokens = cfg.DATASETS.SEPARATION_TOKENS
     
     caption_prompt = cfg.DATASETS.CAPTION_PROMPT
+    if caption_prompt is not None and isinstance(caption_prompt, str):
+        caption_prompt = load_from_yaml_file(caption_prompt)
     use_caption_prompt = cfg.DATASETS.USE_CAPTION_PROMPT and caption_prompt is not None
     for _index, label in enumerate(label_list):
         if use_caption_prompt:
@@ -368,7 +390,8 @@ def inference(
         expected_results_sigma_tol=4,
         output_folder=None,
         cfg=None,
-        verbose=True
+        verbose=True,
+        visualizer = None
 ):
     # convert to a torch.device for efficiency
     try:
@@ -391,8 +414,15 @@ def inference(
     if not task:
         return inference_default(model, data_loader, dataset_name, iou_types, box_only, device, expected_results, expected_results_sigma_tol, output_folder, cfg)
         
+    if cfg.GLIPKNOW.PARALLEL_LANGUAGE_INPUT:
+        assert task == 'detection'
+        categories = dataset.categories()
 
-    if task == "detection":
+        keys = list(categories.keys())
+        keys.sort()
+        all_queries = [[categories[k] for k in keys]]
+        all_positive_map_label_to_token = [{k: [i] for i, k in enumerate(keys)}]
+    elif task == "detection":
         all_queries, all_positive_map_label_to_token = create_queries_and_maps_from_dataset(dataset, cfg)
     elif task == "grounding":
         all_queries = [None]
@@ -483,7 +513,56 @@ def inference(
                         mdetr_style_output.append((targets[0]["image_id"].item(), {"scores": scores, "labels": labels, "boxes": boxes}))
                     else:
                         all_output.append(output)
+        if visualizer is not None:
+            assert(len(all_output) == 1)
+            if "lvis" in cfg.DATASETS.TEST[0]:
+                scores = [o[1]["scores"] for o in mdetr_style_output]
+                labels = [o[1]["labels"] for o in mdetr_style_output]
+                boxes = [o[1]["boxes"] for o in mdetr_style_output]
+                scores = torch.cat(scores, dim=0)
+                labels = torch.cat(labels, dim=0)
+                boxes = torch.cat(boxes, dim=0)
+                visualizer_input = BoxList(boxes, output.size)
+                visualizer_input.add_field("scores", scores)
+                visualizer_input.add_field("labels", labels)
+            else:
+                visualizer_input = all_output[0][0] # single image_visualize
 
+            image_id = dataset.ids[i]
+            try:
+                image_path = os.path.join(dataset.root, dataset.coco.loadImgs(image_id)[0]["file_name"])
+                categories = dataset.coco.dataset["categories"]
+            except:
+                lvis = dataset.lvis
+                img_id = dataset.ids[i]
+                ann_ids = lvis.get_ann_ids(img_ids=img_id)
+                target = lvis.load_anns(ann_ids)
+
+                image_path = "DATASET/coco/" +  "/".join(dataset.lvis.load_imgs(img_id)[0]["coco_url"].split("/")[-2:])
+                categories = dataset.lvis.dataset["categories"]
+
+            image = load(image_path)
+            no_background = True
+            label_list = []
+            for index, i in enumerate(categories):
+                if not no_background or (i["name"] != "__background__" and i['id'] != 0):
+                    label_list.append(i["name"])
+            visualizer.entities =  label_list
+            
+            result, _ = visualizer.visualize_with_predictions(
+                image,
+                visualizer_input, 
+                threshold,
+                alpha=alpha,
+                box_pixel=box_pixel,
+                text_size=text_size,
+                text_pixel=text_pixel,
+                text_offset=text_offset,
+                text_offset_original=text_offset_original,
+                color=color,
+            )
+            imshow(result, "./visualize/img_{}.jpg".format(i))
+        
         if evaluator is not None:
             evaluator.update(mdetr_style_output)
         else:
@@ -492,6 +571,7 @@ def inference(
                 output[index] = i[0].concate_box_list(i)
 
             results_dict.update({img_id: result for img_id, result in zip(image_ids, output)})
+
     if evaluator is not None:
         evaluator.synchronize_between_processes()
         try:

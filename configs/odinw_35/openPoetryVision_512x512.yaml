@@ -1,0 +1,180 @@
+DATALOADER:
+  ASPECT_RATIO_GROUPING: false
+  SIZE_DIVISIBILITY: 32
+DATASETS:
+  GENERAL_COPY: 2
+  OVERRIDE_CATEGORY: '[{"id": 1, "name": "American Typewriter", "supercategory": "text"},
+    {"id": 2, "name": "Andale Mono", "supercategory": "text"}, {"id": 3, "name": "Apple
+    Chancery", "supercategory": "text"}, {"id": 4, "name": "Arial", "supercategory":
+    "text"}, {"id": 5, "name": "Avenir", "supercategory": "text"}, {"id": 6, "name":
+    "Baskerville", "supercategory": "text"}, {"id": 7, "name": "Big Caslon", "supercategory":
+    "text"}, {"id": 8, "name": "Bradley Hand", "supercategory": "text"}, {"id": 9,
+    "name": "Brush Script MT", "supercategory": "text"}, {"id": 10, "name": "Chalkboard",
+    "supercategory": "text"}, {"id": 11, "name": "Comic Sans MS", "supercategory":
+    "text"}, {"id": 12, "name": "Copperplate", "supercategory": "text"}, {"id": 13,
+    "name": "Courier", "supercategory": "text"}, {"id": 14, "name": "Didot", "supercategory":
+    "text"}, {"id": 15, "name": "Futura", "supercategory": "text"}, {"id": 16, "name":
+    "Geneva", "supercategory": "text"}, {"id": 17, "name": "Georgia", "supercategory":
+    "text"}, {"id": 18, "name": "Gill Sans", "supercategory": "text"}, {"id": 19,
+    "name": "Helvetica", "supercategory": "text"}, {"id": 20, "name": "Herculanum",
+    "supercategory": "text"}, {"id": 21, "name": "Impact", "supercategory": "text"},
+    {"id": 22, "name": "Kefa", "supercategory": "text"}, {"id": 23, "name": "Lucida
+    Grande", "supercategory": "text"}, {"id": 24, "name": "Luminari", "supercategory":
+    "text"}, {"id": 25, "name": "Marker Felt", "supercategory": "text"}, {"id": 26,
+    "name": "Menlo", "supercategory": "text"}, {"id": 27, "name": "Monaco", "supercategory":
+    "text"}, {"id": 28, "name": "Noteworthy", "supercategory": "text"}, {"id": 29,
+    "name": "Optima", "supercategory": "text"}, {"id": 30, "name": "PT Sans", "supercategory":
+    "text"}, {"id": 31, "name": "PT Serif", "supercategory": "text"}, {"id": 32, "name":
+    "Palatino", "supercategory": "text"}, {"id": 33, "name": "Papyrus", "supercategory":
+    "text"}, {"id": 34, "name": "Phosphate", "supercategory": "text"}, {"id": 35,
+    "name": "Rockwell", "supercategory": "text"}, {"id": 36, "name": "SF Pro", "supercategory":
+    "text"}, {"id": 37, "name": "SignPainter", "supercategory": "text"}, {"id": 38,
+    "name": "Skia", "supercategory": "text"}, {"id": 39, "name": "Snell Roundhand",
+    "supercategory": "text"}, {"id": 40, "name": "Tahoma", "supercategory": "text"},
+    {"id": 41, "name": "Times New Roman", "supercategory": "text"}, {"id": 42, "name":
+    "Trebuchet MS", "supercategory": "text"}, {"id": 43, "name": "Verdana", "supercategory":
+    "text"}]'
+  PREDEFINED_TEXT: odinw/pothole/category_description.json
+  REGISTER:
+    minival:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/annotations_without_background.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    minival_10_3:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/fewshot_minival_shot10_seed3.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    minival_10_30:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/fewshot_minival_shot10_seed30.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    minival_10_300:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/fewshot_minival_shot10_seed300.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    minival_1_3:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/fewshot_minival_shot1_seed3.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    minival_1_30:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/fewshot_minival_shot1_seed30.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    minival_1_300:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/fewshot_minival_shot1_seed300.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    minival_3_3:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/fewshot_minival_shot3_seed3.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    minival_3_30:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/fewshot_minival_shot3_seed30.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    minival_3_300:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/fewshot_minival_shot3_seed300.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    minival_5_3:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/fewshot_minival_shot5_seed3.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    minival_5_30:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/fewshot_minival_shot5_seed30.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    minival_5_300:
+      ann_file: odinw/openPoetryVision/512x512/mini_val/fewshot_minival_shot5_seed300.json
+      img_dir: odinw/openPoetryVision/512x512/mini_val
+    test:
+      ann_file: odinw/openPoetryVision/512x512/test/annotations_without_background.json
+      img_dir: odinw/openPoetryVision/512x512/test
+    train:
+      ann_file: odinw/openPoetryVision/512x512/train/annotations_without_background.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    train_10_3:
+      ann_file: odinw/openPoetryVision/512x512/train/fewshot_train_shot10_seed3.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    train_10_30:
+      ann_file: odinw/openPoetryVision/512x512/train/fewshot_train_shot10_seed30.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    train_10_300:
+      ann_file: odinw/openPoetryVision/512x512/train/fewshot_train_shot10_seed300.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    train_1_3:
+      ann_file: odinw/openPoetryVision/512x512/train/fewshot_train_shot1_seed3.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    train_1_30:
+      ann_file: odinw/openPoetryVision/512x512/train/fewshot_train_shot1_seed30.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    train_1_300:
+      ann_file: odinw/openPoetryVision/512x512/train/fewshot_train_shot1_seed300.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    train_3_3:
+      ann_file: odinw/openPoetryVision/512x512/train/fewshot_train_shot3_seed3.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    train_3_30:
+      ann_file: odinw/openPoetryVision/512x512/train/fewshot_train_shot3_seed30.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    train_3_300:
+      ann_file: odinw/openPoetryVision/512x512/train/fewshot_train_shot3_seed300.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    train_5_3:
+      ann_file: odinw/openPoetryVision/512x512/train/fewshot_train_shot5_seed3.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    train_5_30:
+      ann_file: odinw/openPoetryVision/512x512/train/fewshot_train_shot5_seed30.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    train_5_300:
+      ann_file: odinw/openPoetryVision/512x512/train/fewshot_train_shot5_seed300.json
+      img_dir: odinw/openPoetryVision/512x512/train
+    val:
+      ann_file: odinw/openPoetryVision/512x512/valid/annotations_without_background.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+    val_10_3:
+      ann_file: odinw/openPoetryVision/512x512/valid/fewshot_val_shot10_seed3.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+    val_10_30:
+      ann_file: odinw/openPoetryVision/512x512/valid/fewshot_val_shot10_seed30.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+    val_10_300:
+      ann_file: odinw/openPoetryVision/512x512/valid/fewshot_val_shot10_seed300.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+    val_1_3:
+      ann_file: odinw/openPoetryVision/512x512/valid/fewshot_val_shot1_seed3.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+    val_1_30:
+      ann_file: odinw/openPoetryVision/512x512/valid/fewshot_val_shot1_seed30.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+    val_1_300:
+      ann_file: odinw/openPoetryVision/512x512/valid/fewshot_val_shot1_seed300.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+    val_3_3:
+      ann_file: odinw/openPoetryVision/512x512/valid/fewshot_val_shot3_seed3.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+    val_3_30:
+      ann_file: odinw/openPoetryVision/512x512/valid/fewshot_val_shot3_seed30.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+    val_3_300:
+      ann_file: odinw/openPoetryVision/512x512/valid/fewshot_val_shot3_seed300.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+    val_5_3:
+      ann_file: odinw/openPoetryVision/512x512/valid/fewshot_val_shot5_seed3.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+    val_5_30:
+      ann_file: odinw/openPoetryVision/512x512/valid/fewshot_val_shot5_seed30.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+    val_5_300:
+      ann_file: odinw/openPoetryVision/512x512/valid/fewshot_val_shot5_seed300.json
+      img_dir: odinw/openPoetryVision/512x512/valid
+  TEST: ("minival",)
+  TRAIN: ("train",)
+INPUT:
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: 800
+MODEL:
+  ATSS:
+    NUM_CLASSES: 44
+  DYHEAD:
+    NUM_CLASSES: 44
+  FCOS:
+    NUM_CLASSES: 44
+  ROI_BOX_HEAD:
+    NUM_CLASSES: 44
+SOLVER:
+  CHECKPOINT_PERIOD: 100
+  MAX_EPOCH: 12
+  WARMUP_ITERS: 0
+TEST:
+  IMS_PER_BATCH: 8

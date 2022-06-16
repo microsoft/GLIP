@@ -1,0 +1,178 @@
+DATALOADER:
+  ASPECT_RATIO_GROUPING: false
+  SIZE_DIVISIBILITY: 32
+DATASETS:
+  GENERAL_COPY: 4
+  OVERRIDE_CATEGORY: '[{"id": 1, "name": "cat-Abyssinian", "supercategory": "pets"},
+    {"id": 2, "name": "cat-Bengal", "supercategory": "pets"}, {"id": 3, "name": "cat-Birman",
+    "supercategory": "pets"}, {"id": 4, "name": "cat-Bombay", "supercategory": "pets"},
+    {"id": 5, "name": "cat-British_Shorthair", "supercategory": "pets"}, {"id": 6,
+    "name": "cat-Egyptian_Mau", "supercategory": "pets"}, {"id": 7, "name": "cat-Maine_Coon",
+    "supercategory": "pets"}, {"id": 8, "name": "cat-Persian", "supercategory": "pets"},
+    {"id": 9, "name": "cat-Ragdoll", "supercategory": "pets"}, {"id": 10, "name":
+    "cat-Russian_Blue", "supercategory": "pets"}, {"id": 11, "name": "cat-Siamese",
+    "supercategory": "pets"}, {"id": 12, "name": "cat-Sphynx", "supercategory": "pets"},
+    {"id": 13, "name": "dog-american_bulldog", "supercategory": "pets"}, {"id": 14,
+    "name": "dog-american_pit_bull_terrier", "supercategory": "pets"}, {"id": 15,
+    "name": "dog-basset_hound", "supercategory": "pets"}, {"id": 16, "name": "dog-beagle",
+    "supercategory": "pets"}, {"id": 17, "name": "dog-boxer", "supercategory": "pets"},
+    {"id": 18, "name": "dog-chihuahua", "supercategory": "pets"}, {"id": 19, "name":
+    "dog-english_cocker_spaniel", "supercategory": "pets"}, {"id": 20, "name": "dog-english_setter",
+    "supercategory": "pets"}, {"id": 21, "name": "dog-german_shorthaired", "supercategory":
+    "pets"}, {"id": 22, "name": "dog-great_pyrenees", "supercategory": "pets"}, {"id":
+    23, "name": "dog-havanese", "supercategory": "pets"}, {"id": 24, "name": "dog-japanese_chin",
+    "supercategory": "pets"}, {"id": 25, "name": "dog-keeshond", "supercategory":
+    "pets"}, {"id": 26, "name": "dog-leonberger", "supercategory": "pets"}, {"id":
+    27, "name": "dog-miniature_pinscher", "supercategory": "pets"}, {"id": 28, "name":
+    "dog-newfoundland", "supercategory": "pets"}, {"id": 29, "name": "dog-pomeranian",
+    "supercategory": "pets"}, {"id": 30, "name": "dog-pug", "supercategory": "pets"},
+    {"id": 31, "name": "dog-saint_bernard", "supercategory": "pets"}, {"id": 32, "name":
+    "dog-samoyed", "supercategory": "pets"}, {"id": 33, "name": "dog-scottish_terrier",
+    "supercategory": "pets"}, {"id": 34, "name": "dog-shiba_inu", "supercategory":
+    "pets"}, {"id": 35, "name": "dog-staffordshire_bull_terrier", "supercategory":
+    "pets"}, {"id": 36, "name": "dog-wheaten_terrier", "supercategory": "pets"}, {"id":
+    37, "name": "dog-yorkshire_terrier", "supercategory": "pets"}]'
+  PREDEFINED_TEXT: odinw/pothole/category_description.json
+  REGISTER:
+    minival:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/annotations_without_background.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    minival_10_3:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/fewshot_minival_shot10_seed3.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    minival_10_30:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/fewshot_minival_shot10_seed30.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    minival_10_300:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/fewshot_minival_shot10_seed300.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    minival_1_3:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/fewshot_minival_shot1_seed3.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    minival_1_30:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/fewshot_minival_shot1_seed30.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    minival_1_300:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/fewshot_minival_shot1_seed300.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    minival_3_3:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/fewshot_minival_shot3_seed3.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    minival_3_30:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/fewshot_minival_shot3_seed30.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    minival_3_300:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/fewshot_minival_shot3_seed300.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    minival_5_3:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/fewshot_minival_shot5_seed3.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    minival_5_30:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/fewshot_minival_shot5_seed30.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    minival_5_300:
+      ann_file: odinw/OxfordPets/by-breed/mini_val/fewshot_minival_shot5_seed300.json
+      img_dir: odinw/OxfordPets/by-breed/mini_val
+    test:
+      ann_file: odinw/OxfordPets/by-breed/test/annotations_without_background.json
+      img_dir: odinw/OxfordPets/by-breed/test
+    train:
+      ann_file: odinw/OxfordPets/by-breed/train/annotations_without_background.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    train_10_3:
+      ann_file: odinw/OxfordPets/by-breed/train/fewshot_train_shot10_seed3.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    train_10_30:
+      ann_file: odinw/OxfordPets/by-breed/train/fewshot_train_shot10_seed30.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    train_10_300:
+      ann_file: odinw/OxfordPets/by-breed/train/fewshot_train_shot10_seed300.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    train_1_3:
+      ann_file: odinw/OxfordPets/by-breed/train/fewshot_train_shot1_seed3.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    train_1_30:
+      ann_file: odinw/OxfordPets/by-breed/train/fewshot_train_shot1_seed30.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    train_1_300:
+      ann_file: odinw/OxfordPets/by-breed/train/fewshot_train_shot1_seed300.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    train_3_3:
+      ann_file: odinw/OxfordPets/by-breed/train/fewshot_train_shot3_seed3.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    train_3_30:
+      ann_file: odinw/OxfordPets/by-breed/train/fewshot_train_shot3_seed30.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    train_3_300:
+      ann_file: odinw/OxfordPets/by-breed/train/fewshot_train_shot3_seed300.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    train_5_3:
+      ann_file: odinw/OxfordPets/by-breed/train/fewshot_train_shot5_seed3.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    train_5_30:
+      ann_file: odinw/OxfordPets/by-breed/train/fewshot_train_shot5_seed30.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    train_5_300:
+      ann_file: odinw/OxfordPets/by-breed/train/fewshot_train_shot5_seed300.json
+      img_dir: odinw/OxfordPets/by-breed/train
+    val:
+      ann_file: odinw/OxfordPets/by-breed/valid/annotations_without_background.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+    val_10_3:
+      ann_file: odinw/OxfordPets/by-breed/valid/fewshot_val_shot10_seed3.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+    val_10_30:
+      ann_file: odinw/OxfordPets/by-breed/valid/fewshot_val_shot10_seed30.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+    val_10_300:
+      ann_file: odinw/OxfordPets/by-breed/valid/fewshot_val_shot10_seed300.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+    val_1_3:
+      ann_file: odinw/OxfordPets/by-breed/valid/fewshot_val_shot1_seed3.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+    val_1_30:
+      ann_file: odinw/OxfordPets/by-breed/valid/fewshot_val_shot1_seed30.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+    val_1_300:
+      ann_file: odinw/OxfordPets/by-breed/valid/fewshot_val_shot1_seed300.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+    val_3_3:
+      ann_file: odinw/OxfordPets/by-breed/valid/fewshot_val_shot3_seed3.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+    val_3_30:
+      ann_file: odinw/OxfordPets/by-breed/valid/fewshot_val_shot3_seed30.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+    val_3_300:
+      ann_file: odinw/OxfordPets/by-breed/valid/fewshot_val_shot3_seed300.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+    val_5_3:
+      ann_file: odinw/OxfordPets/by-breed/valid/fewshot_val_shot5_seed3.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+    val_5_30:
+      ann_file: odinw/OxfordPets/by-breed/valid/fewshot_val_shot5_seed30.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+    val_5_300:
+      ann_file: odinw/OxfordPets/by-breed/valid/fewshot_val_shot5_seed300.json
+      img_dir: odinw/OxfordPets/by-breed/valid
+  TEST: ("minival",)
+  TRAIN: ("train",)
+INPUT:
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: 800
+MODEL:
+  ATSS:
+    NUM_CLASSES: 38
+  DYHEAD:
+    NUM_CLASSES: 38
+  FCOS:
+    NUM_CLASSES: 38
+  ROI_BOX_HEAD:
+    NUM_CLASSES: 38
+SOLVER:
+  CHECKPOINT_PERIOD: 100
+  MAX_EPOCH: 12
+  WARMUP_ITERS: 0
+TEST:
+  IMS_PER_BATCH: 8

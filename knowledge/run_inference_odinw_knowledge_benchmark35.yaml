@@ -1,0 +1,259 @@
+description: Multi-node Pretraining Experiments For vldyhead
+
+# target:
+#  vc: hai1
+#  service: amlk8s
+#  name: itphyperdgx2cl1
+
+# target:
+#   service: amlk8s
+#   vc: msrhyper
+#   cluster: itphyperdellcl1
+#   subscription_id: 46da6261-2167-4e71-8b0d-f4a45215ce61
+#   workspace_name: msrhyper
+#   resource_group: msrhyperVC
+
+target:
+  vc: hcrr07
+  service: amlk8s
+  name: itphyperdgx2cl2
+
+# target:
+#   vc: msrhyper # msrhyper
+#   service: amlk8s
+#   name: itphyperdellcl1
+
+# target:
+#  vc: msrhyper
+#  service: amlk8s
+#  name: itpa100cl
+
+# target:
+#   service: amlk8s
+#   vc: Image_Languge_Pretraining
+#   cluster: scus-v100-2
+#   subscription_id: 8d7c0a6f-7c2e-4e4b-becf-f9ee95433147
+#   workspace_name: Image_Languge_Pretraining-aml
+#   resource_group: Image_Languge_Pretraining-aml
+
+# target:
+#  vc: hai6
+#  service: amlk8s
+#  name: itphyperdgx2cl1
+# target:
+#  vc: hai2
+#  service: amlk8s
+#  name: itphyperdgx2cl1
+
+environment:
+  # image: amsword/setup:py36pt17u18cu11
+  image: pengchuanzhang/pytorch:ubuntu20.04_torch1.9-cuda11.3-nccl2.9.9
+  # image: pengchuanzhang/maskrcnn:ubuntu18-py3.7-cuda10.1-pytorch1.7
+  registry: docker.io
+
+storage:
+  data_storage:
+    storage_account_name: penzhanwu2v2
+    container_name: data
+  model_storage:
+    storage_account_name: penzhanwu2v2
+    container_name: data
+  project_storage:
+    storage_account_name: penzhanwu2v2
+    container_name: amulet
+  detection_storage:
+    storage_account_name: penzhanwu2
+    container_name: phillytools
+  penzhanwu2v2pt:
+    storage_account_name: penzhanwu2v2
+    container_name: phillytools
+  penzhanwu2v2data:
+    storage_account_name: penzhanwu2v2
+    container_name: data 
+  penzhanwu2data:
+    storage_account_name: penzhanwu2
+    container_name: data
+  # penzhanscusdata:
+  #   storage_account_name: penzhanscus
+  #   container_name: data
+  bingdata:
+    storage_account_name: penzhanwu2v2
+    container_name: data
+  alttextdata:
+    storage_account_name: vlpdatasets
+    container_name: data
+  vlpdatasets_model:
+    storage_account_name: vlpdatasets
+    container_name: model
+  odinw_data:
+    storage_account_name: vlpdatasets
+    container_name: odinw    
+  penzhanwu2amlt:
+    storage_account_name: penzhanwu2
+    container_name: amulet
+  output_storage:
+    storage_account_name: chunyleu
+    container_name: output 
+
+
+code:
+  # local directory of the code. this will be uploaded to the server.
+  # $CONFIG_DIR is expanded to the directory of this config file
+  local_dir: $CONFIG_DIR/../
+
+#############################################
+# run experiments for pre-training
+#############################################
+
+
+search:
+  job_template:
+    name: vldyhead_{ckpt}_{knowledge_file}_{model_dir}_{task_name}_{knowledge_type}
+    sku: G1
+    sku_count: 1
+    aml_mpirun:
+      communicator: OpenMpi
+      process_count_per_node: 1
+    command:
+      - ulimit -n 4096
+      - pip install einops shapely timm yacs tensorboardX ftfy prettytable
+      - pip install transformers
+      - pip install qd
+      - python setup.py build develop --user
+      # - ln -s /mnt/data_storage/htzhang DATASET
+      - ln -s /mnt/odinw_data DATASET
+      - ln -s /mnt/model_storage/htzhang/model/swin-transformer MODEL
+      - ln -s /mnt/output_storage/exp_glip/model/knowledge/class_128_batchsize_32 OUTPUT
+      - ln -s /mnt/bingdata/BingAltTextData BingAltTextData
+      #- cp /mnt/penzhanwu2amlt/projects/swint_dyhead_ablation/amlt-results/7365119660.39362-37fbb6df-e4a6-432f-b9ea-feca56c444cd/model_0695000.pth ./ MODEL.WEIGHT model_0695000.pth
+      - export TOKENIZERS_PARALLELISM=True
+
+      - python tools/test_grounding_net.py --config-file {model_dir}/config.yml --weight {model_dir}/model_{ckpt}.pth 
+        --task_config configs/odinw_workshop_fewshot/{task_name}.yaml
+        TEST.EVAL_TASK detection TEST.IMS_PER_BATCH 1
+        DATALOADER.DISTRIBUTE_CHUNK_AMONG_NODE False MODEL.DYHEAD.USE_CHECKPOINT False DATASETS.PREDOWNLOAD_BING False DATASETS.PREDOWNLOAD_WITH_AZCOPY False DATASETS.USE_OVERRIDE_CATEGORY True DATASETS.USE_CAPTION_PROMPT True
+        GLIPKNOW.KNOWLEDGE_FILE knowledge/{knowledge_file}.yaml GLIPKNOW.KNOWLEDGE_TYPE {knowledge_type}
+        OUTPUT_DIR {model_dir}/eval_benchmark35/{task_name}/{knowledge_type} # GLIPKNOW.GPT3_NUM {gpt3_num}
+
+    submit_args:
+      max_attempts: 5
+      container_args:
+        shm_size: 64G
+  max_trials: 1000
+  type: grid
+  params:    
+    - name: ckpt
+      spec: discrete
+      values: ['0350000'] # ['0050000','0100000','0150000','0200000','0250000','0300000','0350000'] # ['0367500']  # [vitb16_CLIP] [swin_t]  # [swin_t_CLIP] 
+    - name: knowledge_file
+      spec: discrete
+      values: ['odinw_benchmark35_knowledge_and_gpt3']   # ['odinw_knowledge_with_prompt','odinw_knowledge']     
+    - name: knowledge_type
+      spec: discrete
+      values: ['def_wiki','path_wn3','def_wn'] # ['gpt3']   # ['odinw_knowledge_with_prompt','odinw_knowledge']            
+    - name: model_dir
+      spec: discrete
+      values: [/mnt/penzhanwu2data/xiaowh/glip_for_od/glip-a_def_wiki_maxcls365_laggfirst,/mnt/penzhanwu2data/xiaowh/glip_for_od/glip-a_maxcls365_laggfirst] # [/mnt/penzhanwu2data/xiaowh/glip_for_od/glip-a_def_wiki_maxcls365_laggfirst] # [5,20,50] # [5,20,50,-1] # [5,20,50], [-1], [5,20,50,-1] # https://penzhanwu2.blob.core.windows.net/data/xiaowh/glip_for_od/glip-a_def_wiki_maxcls365_laggfirst/config.yml
+    - name: task_name
+      spec: discrete
+      values: ['boggleBoards_416x416AutoOrient_export_','ChessPieces_Chess_Pieces.v23-raw.coco'] 
+      
+      # ['AerialMaritimeDrone_large','AerialMaritimeDrone_tiled','AmericanSignLanguageLetters_American_Sign_Language_Letters.v1-v1.coco','Aquarium_Aquarium_Combined.v2-raw-1024.coco','BCCD_BCCD.v3-raw.coco','ChessPieces_Chess_Pieces.v23-raw.coco','CottontailRabbits','DroneControl_Drone_Control.v3-raw.coco','EgoHands_generic','EgoHands_specific','HardHatWorkers_raw','MaskWearing_raw','MountainDewCommercial','NorthAmericaMushrooms_North_American_Mushrooms.v1-416x416.coco','OxfordPets_by-breed','OxfordPets_by-species','PKLot_640','Packages_Raw','PascalVOC','Raccoon_Raccoon.v2-raw.coco','ShellfishOpenImages_raw','ThermalCheetah','UnoCards_raw','VehiclesOpenImages_416x416','WildfireSmoke','boggleBoards_416x416AutoOrient_export_','brackishUnderwater_960x540','dice_mediumColor_export','openPoetryVision_512x512','pistols_export','plantdoc_416x416','pothole','selfdrivingCar_fixedLarge_export_','thermalDogsAndPeople','websiteScreenshots']
+      # ['configs/odinw_workshop_fewshot/AerialMaritimeDrone_large.yaml','configs/odinw_workshop_fewshot/AerialMaritimeDrone_tiled.yaml','configs/odinw_workshop_fewshot/AmericanSignLanguageLetters_American_Sign_Language_Letters.v1-v1.coco.yaml','configs/odinw_workshop_fewshot/Aquarium_Aquarium_Combined.v2-raw-1024.coco.yaml','configs/odinw_workshop_fewshot/BCCD_BCCD.v3-raw.coco.yaml','configs/odinw_workshop_fewshot/ChessPieces_Chess_Pieces.v23-raw.coco.yaml','configs/odinw_workshop_fewshot/CottontailRabbits.yaml','configs/odinw_workshop_fewshot/DroneControl_Drone_Control.v3-raw.coco.yaml','configs/odinw_workshop_fewshot/EgoHands_generic.yaml','configs/odinw_workshop_fewshot/EgoHands_specific.yaml','configs/odinw_workshop_fewshot/HardHatWorkers_raw.yaml','configs/odinw_workshop_fewshot/MaskWearing_raw.yaml','configs/odinw_workshop_fewshot/MountainDewCommercial.yaml','configs/odinw_workshop_fewshot/NorthAmericaMushrooms_North_American_Mushrooms.v1-416x416.coco.yaml','configs/odinw_workshop_fewshot/OxfordPets_by-breed.yaml','configs/odinw_workshop_fewshot/OxfordPets_by-species.yaml','configs/odinw_workshop_fewshot/PKLot_640.yaml','configs/odinw_workshop_fewshot/Packages_Raw.yaml','configs/odinw_workshop_fewshot/PascalVOC.yaml','configs/odinw_workshop_fewshot/Raccoon_Raccoon.v2-raw.coco.yaml','configs/odinw_workshop_fewshot/ShellfishOpenImages_raw.yaml','configs/odinw_workshop_fewshot/ThermalCheetah.yaml','configs/odinw_workshop_fewshot/UnoCards_raw.yaml','configs/odinw_workshop_fewshot/VehiclesOpenImages_416x416.yaml','configs/odinw_workshop_fewshot/WildfireSmoke.yaml','configs/odinw_workshop_fewshot/boggleBoards_416x416AutoOrient_export_.yaml','configs/odinw_workshop_fewshot/brackishUnderwater_960x540.yaml','configs/odinw_workshop_fewshot/dice_mediumColor_export.yaml','configs/odinw_workshop_fewshot/openPoetryVision_512x512.yaml','configs/odinw_workshop_fewshot/pistols_export.yaml','configs/odinw_workshop_fewshot/plantdoc_416x416.yaml','configs/odinw_workshop_fewshot/pothole.yaml','configs/odinw_workshop_fewshot/selfdrivingCar_fixedLarge_export_.yaml','configs/odinw_workshop_fewshot/thermalDogsAndPeople.yaml','configs/odinw_workshop_fewshot/websiteScreenshots.yaml']
+
+
+#         --task_config configs/odinw_caption/Pascal2012.yaml,configs/odinw_caption/AerialMaritimeDrone_large_test.yaml,configs/odinw_caption/AerialMaritimeDrone_large.yaml,configs/odinw_caption/AerialMaritimeDrone_tiled_test.yaml,configs/odinw_caption/AerialMaritimeDrone_tiled.yaml,configs/odinw_caption/Aquarium_Aquarium_Combined.v2-raw-1024.coco_test.yaml,configs/odinw_caption/Aquarium_Aquarium_Combined.v2-raw-1024.coco.yaml,configs/odinw_caption/CottontailRabbits_test.yaml,configs/odinw_caption/CottontailRabbits.yaml,configs/odinw_caption/EgoHands_generic_test.yaml,configs/odinw_caption/EgoHands_generic.yaml,configs/odinw_caption/NorthAmericaMushrooms_North_American_Mushrooms.v1-416x416.coco_test.yaml,configs/odinw_caption/NorthAmericaMushrooms_North_American_Mushrooms.v1-416x416.coco.yaml,configs/odinw_caption/Packages_Raw_test.yaml,configs/odinw_caption/Packages_Raw.yaml,configs/odinw_caption/Raccoon_Raccoon.v2-raw.coco_test.yaml,configs/odinw_caption/Raccoon_Raccoon.v2-raw.coco.yaml,configs/odinw_caption/ShellfishOpenImages_raw_test.yaml,configs/odinw_caption/ShellfishOpenImages_raw.yaml,configs/odinw_caption/VehiclesOpenImages_416x416_test.yaml,configs/odinw_caption/VehiclesOpenImages_416x416.yaml,configs/odinw_caption/pistols_export_test.yaml,configs/odinw_caption/pistols_export.yaml,configs/odinw_caption/pothole_test.yaml,configs/odinw_caption/pothole.yaml,configs/odinw_caption/thermalDogsAndPeople_test.yaml,configs/odinw_caption/thermalDogsAndPeople.yaml
+
+
+# [odinw_knowledge.yaml OR odinw_knowledge_with_prompt.yaml]      
+# jobs:
+#   - name: _bidirectional #vldyhead_swint_s_Obj365_GoldGround_FusionSingle_LangOn_E30_Bsz64_HCRR
+#     sku: 2xG16
+#     aml_mpirun:
+#       communicator: OpenMpi
+#       process_count_per_node: 1
+#     command:
+#       - ulimit -n 4096
+#       - pip install einops shapely timm yacs tensorboardX ftfy prettytable
+#       - pip install transformers
+#       - python setup.py build develop --user
+#       - ln -s /mnt/data_storage/htzhang DATASET
+#       - ln -s /mnt/model_storage/htzhang/model/swin-transformer MODEL
+#       - ln -s /mnt/model_storage/htzhang/model/dyhead OUTPUT
+#       - ln -s /mnt/bingdata/BingAltTextData BingAltTextData
+#       - python3 -m onedet.utils.launch --nnodes 2 --nproc_per_node=16 tools/train_net.py
+#         --config-file configs/harold/dyhead/grounding.yaml
+#         --skip-test
+#         --use-tensorboard
+#         --save_original_config
+#         AUGMENT.MULT_MIN_SIZE_TRAIN 480,560,640,720,800
+#         INPUT.MAX_SIZE_TRAIN 1333
+#         MODEL.BACKBONE.FREEZE_CONV_BODY_AT -1
+#         SOLVER.IMS_PER_BATCH 64
+#         SOLVER.USE_AMP True
+#         TEST.DURING_TRAINING False
+#         TEST.IMS_PER_BATCH 32
+#         SOLVER.MODEL_EMA 0.999
+#         MODEL.LANGUAGE_BACKBONE.FREEZE False
+#         MODEL.DYHEAD.FUSE_CONFIG.EARLY_FUSE_ON True
+#         MODEL.DYHEAD.FUSE_CONFIG.TYPE "MHA-B"
+#         SOLVER.CLIP_GRADIENTS.ENABLED True
+#         MODEL.DYHEAD.FUSE_CONFIG.CLAMP_MIN_FOR_UNDERFLOW True
+#         MODEL.DYHEAD.FUSE_CONFIG.CLAMP_MAX_FOR_OVERFLOW True
+#         MODEL.DYHEAD.FUSE_CONFIG.CLAMP_BERTATTN_MIN_FOR_UNDERFLOW True
+#         MODEL.DYHEAD.FUSE_CONFIG.CLAMP_BERTATTN_MAX_FOR_OVERFLOW True
+#         MODEL.DYHEAD.FUSE_CONFIG.SEPARATE_BIDIRECTIONAL True
+#         SOLVER.FIND_UNUSED_PARAMETERS True
+#         MODEL.DYHEAD.USE_CHECKPOINT True 
+#         # MODEL.LANGUAGE_BACKBONE.N_LAYERS 4
+
+#     submit_args:
+#       max_attempts: 5
+#       container_args:
+#         shm_size: 64G
+
+# jobs:
+#   - name: _ # debug
+#     sku: G16
+#     aml_mpirun:
+#       communicator: OpenMpi
+#       process_count_per_node: 1
+#     command:
+#       - ulimit -n 4096
+#       - pip install einops shapely timm yacs tensorboardX ftfy
+#       - pip install transformers
+#       - python setup.py build develop --user
+#       - ln -s /mnt/data_storage/htzhang DATASET
+#       - ln -s /mnt/model_storage/htzhang/model/swin-transformer MODEL
+#       - ln -s /mnt/model_storage/htzhang/model/dyhead OUTPUT
+#       - CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -m onedet.utils.launch --nnodes 1 --nproc_per_node=8 tools/train_net.py
+#         --config-file configs/harold/dyhead/grounding.yaml
+#         --skip-test
+#         --use-tensorboard
+#         --save_original_config
+#         AUGMENT.MULT_MIN_SIZE_TRAIN 480,560,640,720,800
+#         INPUT.MAX_SIZE_TRAIN 1333
+#         MODEL.BACKBONE.FREEZE_CONV_BODY_AT -1
+#         SOLVER.IMS_PER_BATCH 8
+#         SOLVER.USE_AMP True
+#         TEST.DURING_TRAINING False
+#         TEST.IMS_PER_BATCH 32
+#         SOLVER.MODEL_EMA 0.999
+#         SOLVER.MAX_EPOCH 30
+#         MODEL.LANGUAGE_BACKBONE.FREEZE False
+#         MODEL.DYHEAD.FUSE_CONFIG.EARLY_FUSE_ON True
+#         MODEL.DYHEAD.FUSE_CONFIG.USE_DOT_PRODUCT_TOKEN_LOSS True
+#         MODEL.DYHEAD.FUSE_CONFIG.USE_LAYER_SCALE True
+#         SOLVER.CLIP_GRADIENTS.ENABLED True
+#         MODEL.DYHEAD.FUSE_CONFIG.TYPE "MHA-B"
+#         MODEL.DYHEAD.FUSE_CONFIG.SEPARATE_BIDIRECTIONAL True
+#         # MODEL.DYHEAD.USE_CHECKPOINT True
+#         # MODEL.DYHEAD.FUSE_CONFIG.STABLE_SOFTMAX_2D True
+#         # MODEL.DYHEAD.USE_CHECKPOINT True
+#         # MODEL.DYHEAD.FUSE_CONFIG.SEPARATE_BIDIRECTIONAL True
+
+
+#     submit_args:
+#       max_attempts: 5
+#       container_args:
+#         shm_size: 64G

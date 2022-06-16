@@ -126,6 +126,11 @@ class GeneralizedVLRCNN(nn.Module):
         self.use_mlm_loss = cfg.MODEL.DYHEAD.FUSE_CONFIG.MLM_LOSS 
         self.mlm_loss_for_only_positives = cfg.MODEL.DYHEAD.FUSE_CONFIG.MLM_LOSS_FOR_ONLY_POSITIVES
 
+        if self.cfg.GLIPKNOW.KNOWLEDGE_FILE:
+            from maskrcnn_benchmark.data.datasets.tsv import load_from_yaml_file
+            self.class_name_to_knowledge = load_from_yaml_file(self.cfg.GLIPKNOW.KNOWLEDGE_FILE)
+            self.class_name_list = sorted([k for k in self.class_name_to_knowledge])
+
     def train(self, mode=True):
         """Convert the model into training mode while keep layers freezed."""
         super(GeneralizedVLRCNN, self).train(mode)
@@ -194,51 +199,57 @@ class GeneralizedVLRCNN(nn.Module):
         # batch_size = images.tensors.shape[0]
         device = images.tensors.device
 
-        # language embedding
-        language_dict_features = {}
-        if captions is not None:
-            #print(captions[0])
-            tokenized = self.tokenizer.batch_encode_plus(captions,
-                                                         max_length=self.cfg.MODEL.LANGUAGE_BACKBONE.MAX_QUERY_LEN,
-                                                         padding='max_length' if self.cfg.MODEL.LANGUAGE_BACKBONE.PAD_MAX else "longest",
-                                                         return_special_tokens_mask=True,
-                                                         return_tensors='pt',
-                                                         truncation=True).to(device)
-            if self.use_mlm_loss:
-                if not self.mlm_loss_for_only_positives:
-                    greenlight_map = None
-                input_ids, mlm_labels = random_word(
-                    input_ids=tokenized.input_ids, 
-                    mask_token_id=self.tokenizer.mask_token_id,
-                    vocabs=self.tokenizer_vocab_ids,
-                    padding_token_id=self.tokenizer.pad_token_id,
-                    greenlight_map=greenlight_map)
-            else:
-                input_ids = tokenized.input_ids
-                mlm_labels = None
-            
-            
-            tokenizer_input = {"input_ids": input_ids,
-                               "attention_mask": tokenized.attention_mask}
 
-            if self.cfg.MODEL.LANGUAGE_BACKBONE.FREEZE:
-                with torch.no_grad():
+        if self.cfg.GLIPKNOW.PARALLEL_LANGUAGE_INPUT:
+            language_dict_features, positive_map = self._forward_language_parallel(
+                    captions=captions, targets=targets, device=device,
+                    positive_map=positive_map)
+        else:
+            # language embedding
+            language_dict_features = {}
+            if captions is not None:
+                #print(captions[0])
+                tokenized = self.tokenizer.batch_encode_plus(captions,
+                                                            max_length=self.cfg.MODEL.LANGUAGE_BACKBONE.MAX_QUERY_LEN,
+                                                            padding='max_length' if self.cfg.MODEL.LANGUAGE_BACKBONE.PAD_MAX else "longest",
+                                                            return_special_tokens_mask=True,
+                                                            return_tensors='pt',
+                                                            truncation=True).to(device)
+                if self.use_mlm_loss:
+                    if not self.mlm_loss_for_only_positives:
+                        greenlight_map = None
+                    input_ids, mlm_labels = random_word(
+                        input_ids=tokenized.input_ids, 
+                        mask_token_id=self.tokenizer.mask_token_id,
+                        vocabs=self.tokenizer_vocab_ids,
+                        padding_token_id=self.tokenizer.pad_token_id,
+                        greenlight_map=greenlight_map)
+                else:
+                    input_ids = tokenized.input_ids
+                    mlm_labels = None
+                
+                
+                tokenizer_input = {"input_ids": input_ids,
+                                "attention_mask": tokenized.attention_mask}
+
+                if self.cfg.MODEL.LANGUAGE_BACKBONE.FREEZE:
+                    with torch.no_grad():
+                        language_dict_features = self.language_backbone(tokenizer_input)
+                else:
                     language_dict_features = self.language_backbone(tokenizer_input)
-            else:
-                language_dict_features = self.language_backbone(tokenizer_input)
-            
-            # ONE HOT
-            if self.cfg.DATASETS.ONE_HOT:
-                new_masks = torch.zeros_like(language_dict_features['masks'],
-                                             device=language_dict_features['masks'].device)
-                new_masks[:, :self.cfg.MODEL.DYHEAD.NUM_CLASSES] = 1
-                language_dict_features['masks'] = new_masks
+                
+                # ONE HOT
+                if self.cfg.DATASETS.ONE_HOT:
+                    new_masks = torch.zeros_like(language_dict_features['masks'],
+                                                device=language_dict_features['masks'].device)
+                    new_masks[:, :self.cfg.MODEL.DYHEAD.NUM_CLASSES] = 1
+                    language_dict_features['masks'] = new_masks
 
-            # MASK ALL SPECIAL TOKENS
-            if self.cfg.MODEL.LANGUAGE_BACKBONE.MASK_SPECIAL:
-                language_dict_features["masks"] = 1 - tokenized.special_tokens_mask
-            
-            language_dict_features["mlm_labels"] = mlm_labels
+                # MASK ALL SPECIAL TOKENS
+                if self.cfg.MODEL.LANGUAGE_BACKBONE.MASK_SPECIAL:
+                    language_dict_features["masks"] = 1 - tokenized.special_tokens_mask
+                
+                language_dict_features["mlm_labels"] = mlm_labels
 
         # visual embedding
         swint_feature_c4 = None
@@ -306,3 +317,150 @@ class GeneralizedVLRCNN(nn.Module):
             return losses
 
         return result
+
+    def _forward_language_parallel(self, captions=None, targets=None,
+            device=None, positive_map=None):
+        ktype = self.cfg.GLIPKNOW.KNOWLEDGE_TYPE
+        def _construct_captions_from_class_names(class_names):
+            captions = []
+            for c in class_names:
+                try:
+                    info = self.class_name_to_knowledge[c]
+                    cap = info['clean_name']
+
+                    # combine wiki and gpt3 knowledge
+                    if self.cfg.GLIPKNOW.WIKI_AND_GPT3:
+                        ktype = 'def_wiki'
+                        know_seq = info[ktype]
+
+                        ktype = 'gpt3'
+                        if ktype == 'gpt3' or type(info[ktype]) == list:
+                            know_seq += ' '.join([seq for seq in info[ktype][:self.cfg.GLIPKNOW.GPT3_NUM] ])
+
+                        cap += ': ' + know_seq
+
+                    # only one knoweldge source is used        
+                    else:
+                        if ktype and ktype in info and info[ktype]:
+                            if ktype == 'gpt3' or type(info[ktype]) == list:
+                                know_seq = ' '.join([seq for seq in info[ktype][:self.cfg.GLIPKNOW.GPT3_NUM] ])
+                            else: 
+                                know_seq = info[ktype]
+                            cap += ': ' + know_seq
+                except:
+                    cap = c
+                    print(f'cap {cap}, c {c}')
+                    
+                    
+                captions.append(cap)
+            return captions
+
+        if self.training:
+            assert captions is None
+            assert targets is not None
+
+            max_classes_per_batch = self.cfg.GLIPKNOW.MAX_NUM_CLASSES_PER_BATCH_TRAIN
+            if max_classes_per_batch >= len(self.class_name_list):
+                shuffled_class_names = self.class_name_list.copy()
+                random.shuffle(shuffled_class_names)
+                if max_classes_per_batch > len(shuffled_class_names):
+                    shuffled_class_names.extend(shuffled_class_names[:max_classes_per_batch
+                        -len(shuffled_class_names)])
+                    random.shuffle(shuffled_class_names)
+            else:
+                label_list = []
+                label_to_idx = {}
+                for target_per_im in targets:
+                    labels_per_im = target_per_im.get_field('label_names')
+                    for label in labels_per_im:
+                        if label not in label_to_idx:
+                            label_to_idx[label] = len(label_list)
+                            label_list.append(label)
+
+                label_list = label_list[:max_classes_per_batch]
+                if len(label_list) < max_classes_per_batch:
+                    all_neg_classes = [c for c in self.class_name_list if c not
+                            in label_to_idx]
+                    neg_label_list = random.sample(all_neg_classes,
+                            max_classes_per_batch - len(label_list))
+                    label_list.extend(neg_label_list)
+                random.shuffle(label_list)
+                shuffled_class_names = label_list
+
+            label_to_shuffled_idx = {l: i for i, l in
+                    enumerate(shuffled_class_names)}
+            total_boxes = sum(len(t) for t in targets)
+            positive_map = torch.zeros((total_boxes, max_classes_per_batch+1),
+                device=device)
+            offset = 0
+            for target_per_im in targets:
+                labels_per_im = target_per_im.get_field('label_names')
+                for label in labels_per_im:
+                    j = label_to_shuffled_idx.get(label, -1)
+                    if j >= 0:
+                        positive_map[offset, j] = 1
+                    offset += 1
+            captions = _construct_captions_from_class_names(shuffled_class_names)
+            captions.append('') # onobj at the end, onedet/modeling/rpn/loss.py:719
+            batch_size = len(targets)
+
+        else:
+            assert captions is not None
+            batch_size = 1
+            assert len(captions) == 1
+            class_names = captions[0]
+            max_classes_per_batch = len(class_names)
+            captions = _construct_captions_from_class_names(class_names)
+            captions.append('') # onobj at the end, onedet/modeling/rpn/loss.py:719
+
+        tokenized = self.tokenizer.batch_encode_plus(captions,
+                                                     max_length=self.cfg.MODEL.LANGUAGE_BACKBONE.MAX_QUERY_LEN,
+                                                     padding="longest",
+                                                     return_special_tokens_mask=True,
+                                                     return_tensors='pt',
+                                                     truncation=True).to(device)
+        assert not self.use_mlm_loss
+        tokenizer_input = {"input_ids": tokenized.input_ids,
+                           "attention_mask": tokenized.attention_mask}
+
+        if self.cfg.MODEL.LANGUAGE_BACKBONE.FREEZE:
+            with torch.no_grad():
+                language_dict_features = self.language_backbone(tokenizer_input)
+        else:
+            language_dict_features = self.language_backbone(tokenizer_input)
+
+        assert not self.cfg.DATASETS.ONE_HOT
+        assert not self.cfg.MODEL.LANGUAGE_BACKBONE.MASK_SPECIAL
+
+        agg_type = self.cfg.GLIPKNOW.LAN_FEATURE_AGG_TYPE
+        agg_feats = language_dict_features['hidden']
+        agg_emb = language_dict_features['embedded']
+        if agg_type == 'first':
+            agg_feats = agg_feats[:, 0, :]
+            agg_emb = agg_emb[:, 0, :]
+        elif agg_type == 'mean':
+            attn_mask = language_dict_features['masks']
+            seq_len = attn_mask.sum(-1).unsqueeze(-1).float()
+            agg_feats = agg_feats * attn_mask.unsqueeze(-1).float()
+            agg_feats = agg_feats.sum(1) / seq_len
+            agg_emb = agg_emb * attn_mask.unsqueeze(-1).float()
+            agg_emb = agg_emb.sum(1) / seq_len
+        else:
+            raise ValueError('not supported GLIPKNOW.LAN_FEATURE_AGG_TYPE: {}'.format(agg_type))
+
+        expanded_features = agg_feats.unsqueeze(0).repeat(batch_size, 1, 1)
+        expanded_embedding = agg_emb.unsqueeze(0).repeat(batch_size, 1, 1)
+
+        lang_dict = {}
+        lang_dict["mlm_labels"] = None
+        lang_dict["aggregate"] = None
+        lang_dict["embedded"] = expanded_embedding
+        lang_dict['hidden'] = expanded_features
+        lang_dict["masks"] = torch.ones((batch_size, max_classes_per_batch+1),
+                device=device, dtype=language_dict_features['masks'].dtype)
+        # in GLIP setting, the token at the end of seqence is usually [PAD], and is masked out
+        # if [noobj] is not masked out, the loss sum is very big, as most
+        # anchors are matched to [noobj]
+        lang_dict["masks"][:,-1] = 0
+        return lang_dict, positive_map
+
