@@ -4,6 +4,8 @@
 
 
 ## Updates
+06/21/2022: GLIP has been selected as a Best Paper Finalist at CVPR 2022!
+
 06/16/2022: ODinW benchmark released! GLIP-T A&B released!
 
 06/13/2022: GLIPv2 is on Arxiv https://arxiv.org/abs/2206.05836!
@@ -37,7 +39,7 @@ Please see respective sections for instructions.
 Please see a Colab demo at [link](https://colab.research.google.com/drive/12x7v-_miN7-SRiziK3Cx4ffJzstBJNqb?usp=sharing)!
 
 ## The Object Detection in the Wild Benchmark
-ODinW was first proposed in GLIP and refined and formalized in [ELEVATER](https://arxiv.org/pdf/2204.08790.pdf). GLIP used 13 downstream tasks while the full ODinW has 35 downstream tasks. It will be hosted as a challenge at [the CV in the Wild Workshop @ ECCV 2022](https://computer-vision-in-the-wild.github.io). We hope our code encourage the community to participate in this challenge!
+ODinW was first proposed in GLIP and refined and formalized in [ELEVATER](https://arxiv.org/pdf/2204.08790.pdf). GLIP used 13 downstream tasks while the full ODinW has 35 downstream tasks. It will be hosted as a challenge at [the CV in the Wild Workshop @ ECCV 2022](https://computer-vision-in-the-wild.github.io/eccv-2022/). We hope our code encourage the community to participate in this challenge!
 
  Please see [odinw/README.md](odinw/README.md) for instructions.
 
