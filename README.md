@@ -248,11 +248,11 @@ python odinw/download_datasets.py
 
 ``configs/odinw_35`` contain all the meta information of the datasets. ``configs/odinw_13`` are the datasets used by GLIP. Each dataset follows the coco detection format.
 
-##### Fine-Tuning and Evaluation
+#### Fine-Tuning and Evaluation
 
 All ODinW datasets are in the COCO format. Fine-tuning scripts and evaluation scripts are provided in the main README.md. Here is a brief recap.
 
-##### Evaluation
+#### (Zero-Shot) Evaluation
 ``odinw_configs`` can be any of the configs from ``configs/odinw_14`` and ``configs/odinw_35``.
 ```
 python tools/test_grounding_net.py --config-file {config_file} --weight {model_checkpoint} \
@@ -265,11 +265,11 @@ python tools/test_grounding_net.py --config-file {config_file} --weight {model_c
       DATASETS.USE_CAPTION_PROMPT True
 ```
 
-##### Full-Model Fine-Tuning
+#### Full-Model Fine-Tuning
 
-For tuning with 1/3/5/10-shot, set {custom_shot_and_epoch_and_general_copy} to "1_200_8", "3_200_4", "5_200_2", "10_200_1", respectively.
+For tuning with 1/3/5/10-shot, set `{custom_shot_and_epoch_and_general_copy}` to "1_200_8", "3_200_4", "5_200_2", "10_200_1", respectively.
 
-For tuning with all the data, set {custom_shot_and_epoch_and_general_copy} to "0_200_1"; set SOLVER.STEP_PATIENCE to 2; set SOLVER.AUTO_TERMINATE_PATIENCE to 4.
+For tuning with all the data, set `{custom_shot_and_epoch_and_general_copy}` to "0_200_1"; set SOLVER.STEP_PATIENCE to 2; set SOLVER.AUTO_TERMINATE_PATIENCE to 4.
 
 ```
 python -m torch.distributed.launch --nproc_per_node=4 tools/finetune.py \
@@ -281,7 +281,12 @@ python -m torch.distributed.launch --nproc_per_node=4 tools/finetune.py \
       SOLVER.STEP_PATIENCE 3 SOLVER.CHECKPOINT_PER_EPOCH 1.0 SOLVER.AUTO_TERMINATE_PATIENCE 8 SOLVER.MODEL_EMA 0.0 SOLVER.TUNING_HIGHLEVEL_OVERRIDE full
 ```
 
-##### Prompt Tuning
+#### Prompt Tuning
+
+For tuning with 1/3/5/10-shot, set `{custom_shot_and_epoch_and_general_copy}` to "1_200_8", "3_200_4", "5_200_2", "10_200_1", respectively.
+
+For tuning with all the data, set `{custom_shot_and_epoch_and_general_copy}` to "0_200_1"; set SOLVER.STEP_PATIENCE to 2; set SOLVER.AUTO_TERMINATE_PATIENCE to 4.
+
 Follow the command as in ``Full Model Fine-Tuning``. But set the following hyper-parameters:
 ```
 SOLVER.WEIGHT_DECAY 0.25 \
@@ -289,8 +294,18 @@ SOLVER.BASE_LR 0.05 \
 SOLVER.TUNING_HIGHLEVEL_OVERRIDE language_prompt_v2
 ```
 
+#### Linear Probing
+For tuning with 1/3/5/10-shot, set `{custom_shot_and_epoch_and_general_copy}` to "1_200_8", "3_200_4", "5_200_2", "10_200_1", respectively.
 
-##### Knowledge-Augmented Inference
+For tuning with all the data, set `{custom_shot_and_epoch_and_general_copy}` to "0_200_1"; set SOLVER.STEP_PATIENCE to 2; set SOLVER.AUTO_TERMINATE_PATIENCE to 4.
+
+Follow the command as in ``Full Model Fine-Tuning``. But set the following hyper-parameters:
+```
+SOLVER.TUNING_HIGHLEVEL_OVERRIDE linear_prob
+```
+
+
+#### Knowledge-Augmented Inference
 GLIP also supports knowledge-augmented inference. Please see [our paper](https://arxiv.org/pdf/2204.08790.pdf) for details. Here we provide an example on how to use external knowledge. Please download a specialized GLIP-A model for knowledge augmented inference ``wget https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_a_tiny_o365_knowledge.pth -O MODEL/glip_a_tiny_o365_knowledge.pth``.
 
 ```
