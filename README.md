@@ -248,9 +248,7 @@ python odinw/download_datasets.py
 
 ``configs/odinw_35`` contain all the meta information of the datasets. ``configs/odinw_13`` are the datasets used by GLIP. Each dataset follows the coco detection format.
 
-#### Fine-Tuning and Evaluation
-
-All ODinW datasets are in the COCO format. Fine-tuning scripts and evaluation scripts are provided in the main README.md. Here is a brief recap.
+All ODinW datasets are in the COCO format; thus we can directly use the similar scripts to adapt and evaluate pre-trained models on ODinW. Below is a brief recap.
 
 #### (Zero-Shot) Evaluation
 ``odinw_configs`` can be any of the configs from ``configs/odinw_14`` and ``configs/odinw_35``.
