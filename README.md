@@ -238,6 +238,8 @@ ODinW was introduced in GLIP and initially contained 13 datasets. We further exp
 
 To distinguish between the two versions, we denote the version used by GLIP as ``ODinW-13`` and the version used by the CVinW workshop as ``ODinW-35``.
 
+This repo also provides the necessary code to train and evaluate on ODinW. See instructions below.
+
 #### Download ODinW
 RoboFlow hosts all the original datasets. We are also hosting the datasets and provide a simple script the download all the data. 
 ```
@@ -247,39 +249,6 @@ python odinw/download_datasets.py
 ``configs/odinw_35`` contain all the meta information of the datasets. ``configs/odinw_13`` are the datasets used by GLIP. Each dataset follows the coco detection format.
 
 All ODinW datasets are in the COCO format; thus we can directly use the similar scripts to adapt and evaluate pre-trained models on ODinW. Below is a brief recap.
-
-#### Submit Your Results to ODinw Leaderboard
-
-The participant teams are encouraged to upload their results to [ODinW leaderboard](https://eval.ai/web/challenges/challenge-page/1839/overview) on EvalAI. From the perspective od data labeling cost, lowering the requirement of data requirement enables more scenarios, a varied number of tracks are considered in the challenge: zero-shot, few-shot, and full-shot. Please see the ODinW website for more details about each phase. 
-
-1. For zero/full shot setting, the required format for prediction json file is
-```
-{
-      "dataset_name (e.g., 'WildFireSmoke')":
-            [value]: value is following the COCO's 
-            result format, which contains 
-            ["image_id":xxx, "category_id":xxx, 
-            "bbox":xxx, "score":xxx]
-}
-```
-Please see provided examples for [all_predictions_fullshot.json](https://drive.google.com/file/d/1-nLs2ZebfPoiA_qa_vvkbJD96V1RU7Vu/view?usp=sharing).
-
-2. For few shot (3-shot, according to the challenge description) setting, where three train-val subsets are generated with random seed [3, 30, 300], respectively. The required format for prediction json file is
-```
-{
-      "dataset_name (e.g., "WildFireSmoke")":{
-            "rand_seed_num (e.g., "30")":
-                  [value]: value is following the 
-                  COCO's result format, which 
-                  contains ["image_id":xxx, 
-                  "category_id":xxx, "bbox":xxx, 
-                  "score":xxx]
-     }
-}
-```
-Please see provided example for few shot prediction file [all_predictions_3_shot.json](https://drive.google.com/file/d/13pDjmSf0ZAZghgiDTONDF0ur5FP8AuLx/view?usp=sharing).
-
-This repo provides the necessary code to train and evaluate on ODinW. See instructions below.
 
 #### (Zero-Shot) Evaluation
 ``odinw_configs`` can be any of the configs from ``configs/odinw_14`` and ``configs/odinw_35``.
@@ -348,6 +317,38 @@ python tools/test_grounding_net.py --config-file configs/pretrain/glip_A_Swin_T_
       DATASETS.USE_CAPTION_PROMPT True \
       GLIPKNOW.KNOWLEDGE_FILE knowledge/odinw_benchmark35_knowledge_and_gpt3.yaml GLIPKNOW.KNOWLEDGE_TYPE gpt3_and_wiki GLIPKNOW.PARALLEL_LANGUAGE_INPUT True GLIPKNOW.LAN_FEATURE_AGG_TYPE first MODEL.DYHEAD.FUSE_CONFIG.USE_LAYER_SCALE True GLIPKNOW.GPT3_NUM 3 GLIPKNOW.WIKI_AND_GPT3 True
 ```
+
+#### Submit Your Results to ODinw Leaderboard
+
+The participant teams are encouraged to upload their results to [ODinW leaderboard](https://eval.ai/web/challenges/challenge-page/1839/overview) on EvalAI. From the perspective od data labeling cost, lowering the requirement of data requirement enables more scenarios, a varied number of tracks are considered in the challenge: zero-shot, few-shot, and full-shot. Please see the ODinW website for more details about each phase. 
+
+1. For zero/full shot setting, the required format for prediction json file is
+```
+{
+      "dataset_name (e.g., 'WildFireSmoke')":
+            [value]: value is following the COCO's 
+            result format, which contains 
+            ["image_id":xxx, "category_id":xxx, 
+            "bbox":xxx, "score":xxx]
+}
+```
+Please see one provided example for full shot prediction file: [all_predictions_fullshot.json](https://drive.google.com/file/d/1-nLs2ZebfPoiA_qa_vvkbJD96V1RU7Vu/view?usp=sharing).
+
+2. For few shot (3-shot, according to the challenge description) setting, where three train-val subsets are generated with random seed [3, 30, 300], respectively. The required format for prediction json file is
+```
+{
+      "dataset_name (e.g., "WildFireSmoke")":{
+            "rand_seed_num (e.g., "30")":
+                  [value]: value is following the 
+                  COCO's result format, which 
+                  contains ["image_id":xxx, 
+                  "category_id":xxx, "bbox":xxx, 
+                  "score":xxx]
+     }
+}
+```
+Please see one provided example for few shot prediction file: [all_predictions_3_shot.json](https://drive.google.com/file/d/13pDjmSf0ZAZghgiDTONDF0ur5FP8AuLx/view?usp=sharing).
+
 
 
 ## Citations
