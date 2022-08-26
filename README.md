@@ -332,7 +332,7 @@ The participant teams are encouraged to upload their results to [ODinW leaderboa
             "bbox":xxx, "score":xxx]
 }
 ```
-Please see one provided example for full shot prediction file: [all_predictions_fullshot.json](https://drive.google.com/file/d/1-nLs2ZebfPoiA_qa_vvkbJD96V1RU7Vu/view?usp=sharing).
+Please see one provided example for zero shot prediction file: [all_predictions_zeroshot.json](https://drive.google.com/file/d/1lO66zH141O_0pTiIhRC2lY5y2PxmxGOH/view?usp=sharing) and one full shot prediction file: [all_predictions_fullshot.json](https://drive.google.com/file/d/1-nLs2ZebfPoiA_qa_vvkbJD96V1RU7Vu/view?usp=sharing).
 
 2. For few shot (3-shot, according to the challenge description) setting, where three train-val subsets are generated with random seed [3, 30, 300], respectively. The required format for prediction json file is
 ```
