@@ -6,7 +6,7 @@
 ## Updates
 09/13/2022: Updated [HuggingFace Demo](https://huggingface.co/spaces/haotiz/glip-zeroshot-demo)! Feel feee to give it a try!!!
 
- Acknowledgement: Many thanks to the help from @[HuggingFace](https://huggingface.co/) for aSpace GPU upgrade to host the GLIP demo! 
+ Acknowledgement: Many thanks to the help from @[HuggingFace](https://huggingface.co/) for a Space GPU upgrade to host the GLIP demo! 
 
 06/21/2022: GLIP has been selected as a Best Paper Finalist at CVPR 2022!
 
