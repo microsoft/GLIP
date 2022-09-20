@@ -5,6 +5,8 @@
 
 ## Updates
 
+* 09/19/2022: GLIP has been accepted to NeurIPS 2022. 
+
 * 09/18/2022: Organizing ECCV Workshop [*Computer Vision in the Wild (CVinW)*](https://computer-vision-in-the-wild.github.io/eccv-2022/), where two challenges are hosted to evaluate the zero-shot, few-shot and full-shot performance of pre-trained vision models in downstream tasks:
   - [``*Image Classification in the Wild (ICinW)*''](https://eval.ai/web/challenges/challenge-page/1832/overview) Challenge evaluates on 20 image classification tasks.
   - [``*Object Detection in the Wild (ODinW)*''](https://eval.ai/web/challenges/challenge-page/1839/overview) Challenge evaluates on 35 object detection tasks.
@@ -13,7 +15,7 @@ $\qquad$ [ <img src="https://computer-vision-in-the-wild.github.io/eccv-2022/sta
 $\qquad$    [<img src="https://evalai.s3.amazonaws.com/media/logos/3a31ae6e-a990-48fb-b2c3-1e7da9d17a20.jpg" width=10%/> [OD Challenge] ](https://eval.ai/web/challenges/challenge-page/1839/overview)
 
 
-* 09/13/2022: Updated [HuggingFace Demo](https://huggingface.co/spaces/haotiz/glip-zeroshot-demo)! Feel feee to give it a try!!!
+* 09/13/2022: Updated [HuggingFace Demo](https://huggingface.co/spaces/haotiz/glip-zeroshot-demo)! Feel free to give it a try!!!
 
   -  Acknowledgement: Many thanks to the help from @[HuggingFace](https://huggingface.co/) for a Space GPU upgrade to host the GLIP demo! 
 
