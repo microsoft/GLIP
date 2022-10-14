@@ -5,7 +5,7 @@
 
 ## Updates
 
-* 09/19/2022: GLIPv2 has been accepted to NeurIPS 2022. 
+* 09/19/2022: GLIPv2 has been accepted to NeurIPS 2022 ([Updated Version](https://arxiv.org/abs/2206.05836)). 
 
 * 09/18/2022: Organizing ECCV Workshop [*Computer Vision in the Wild (CVinW)*](https://computer-vision-in-the-wild.github.io/eccv-2022/), where two challenges are hosted to evaluate the zero-shot, few-shot and full-shot performance of pre-trained vision models in downstream tasks:
   - [``*Image Classification in the Wild (ICinW)*''](https://eval.ai/web/challenges/challenge-page/1832/overview) Challenge evaluates on 20 image classification tasks.
