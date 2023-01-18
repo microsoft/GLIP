@@ -4,6 +4,8 @@
 
 
 ## Updates
+* 01/17/2023: From image understanding to image generation for open-set grounding? Check out [**GLIGEN (Grounded Language-to-Image Generation)**](https://gligen.github.io/)
+  - GLIGEN:  (box, concept) $\rightarrow$ image  ||  GLIP:    image $\rightarrow$ (box, concept)
 
 * 09/19/2022: GLIPv2 has been accepted to NeurIPS 2022 ([Updated Version](https://arxiv.org/abs/2206.05836)). 
 
@@ -12,7 +14,7 @@
   - [``*Object Detection in the Wild (ODinW)*''](https://eval.ai/web/challenges/challenge-page/1839/overview) Challenge evaluates on 35 object detection tasks.
 
 $\qquad$ [ <img src="https://computer-vision-in-the-wild.github.io/eccv-2022/static/eccv2022/img/ECCV-logo3.png" width=10%/> [Workshop]](https://computer-vision-in-the-wild.github.io/eccv-2022/)    $\qquad$    [<img src="https://evalai.s3.amazonaws.com/media/logos/4e939412-a9c0-46bd-9797-5ba0bd0a9095.jpg" width=10%/> [IC Challenge] ](https://eval.ai/web/challenges/challenge-page/1832/overview)
-$\qquad$    [<img src="https://evalai.s3.amazonaws.com/media/logos/3a31ae6e-a990-48fb-b2c3-1e7da9d17a20.jpg" width=10%/> [OD Challenge] ](https://eval.ai/web/challenges/challenge-page/1839/overview)
+$\qquad$    [<img src="https://evalai.s3.amazonaws.com/media/logos/e3727105-2b29-4c9b-98a6-3d1191884eb5.jpg" width=10%/> [OD Challenge] ](https://eval.ai/web/challenges/challenge-page/1839/overview)
 
 
 * 09/13/2022: Updated [HuggingFace Demo](https://huggingface.co/spaces/haotiz/glip-zeroshot-demo)! Feel free to give it a try!!!
