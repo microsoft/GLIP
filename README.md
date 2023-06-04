@@ -77,12 +77,14 @@ wget https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/swin_la
 
 ## Model Zoo
 
+***Checkpoint host move.*** The checkpoint links expired. We are moving the checkpoints to https://huggingface.co/harold/GLIP/tree/main. Currently GLIP-T and GLIP-T (C) checkpoints are available. Working to host the remaining checkpoints asap.
+
 Model | COCO [1] | LVIS [2] | LVIS [3] | ODinW [4] | Pre-Train Data | Config  | Weight
 -- | -- | -- | -- | -- | -- | -- | --
 GLIP-T (**A**) | 42.9 / 52.9 | - | 14.2 | ~28.7 | O365 | [config](configs/pretrain/glip_A_Swin_T_O365.yaml) | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_a_tiny_o365.pth)
 GLIP-T (**B**) | 44.9 / 53.8  | - | 13.5 | ~33.2 | O365 | [config](configs/pretrain/glip_Swin_T_O365.yaml) | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365.pth)
-GLIP-T (**C**) | 46.7 / 55.1 | 14.3 | [17.7](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_lvisbest.pth) | 44.4 | O365,GoldG | [config](configs/pretrain/glip_Swin_T_O365_GoldG.yaml) | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg.pth)
-**GLIP-T** [5]  | 46.6 / 55.2  | 17.6  | [20.1](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_cc_sbu_lvisbest.pth) | 42.7 | O365,GoldG,CC3M,SBU | [config](configs/pretrain/glip_Swin_T_O365_GoldG.yaml) [6] | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_cc_sbu.pth)
+GLIP-T (**C**) | 46.7 / 55.1 | 14.3 | [17.7](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_tiny_model_o365_goldg_lvisbest.pth) | 44.4 | O365,GoldG | [config](configs/pretrain/glip_Swin_T_O365_GoldG.yaml) | [weight](https://huggingface.co/harold/GLIP/blob/main/glip_tiny_model_o365_goldg.pth)
+**GLIP-T** [5]  | 46.6 / 55.2  | 17.6  | [20.1](https://huggingface.co/harold/GLIP/blob/main/glip_tiny_model_o365_goldg_cc_sbu_lvisbest.pth) | 42.7 | O365,GoldG,CC3M,SBU | [config](configs/pretrain/glip_Swin_T_O365_GoldG.yaml) [6] | [weight](https://huggingface.co/harold/GLIP/blob/main/glip_tiny_model_o365_goldg_cc_sbu.pth)
 **GLIP-L** [7] | 51.4 / 61.7 [8]  | 29.3 | [30.1](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_large_model_lvisbest.pth) | 51.2 | FourODs,GoldG,CC3M+12M,SBU | [config](configs/pretrain/glip_Swin_L.yaml) [9] | [weight](https://penzhanwu2bbs.blob.core.windows.net/data/GLIPv1_Open/models/glip_large_model.pth)
 
 [1] Zero-shot and fine-tuning performance on COCO val2017.
