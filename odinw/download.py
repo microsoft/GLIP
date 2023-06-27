@@ -6,7 +6,7 @@ argparser.add_argument("--dataset_names", default="all", type=str) # "all" or na
 argparser.add_argument("--dataset_path", default="DATASET/odinw", type=str)
 args = argparser.parse_args()
 
-root = "https://vlpdatasets.blob.core.windows.net/odinw/odinw/odinw_35"
+root = "https://huggingface.co/GLIPModel/GLIP/tree/main/odinw_35"
 
 all_datasets = ["AerialMaritimeDrone", "AmericanSignLanguageLetters", "Aquarium", "BCCD", "ChessPieces", "CottontailRabbits", "DroneControl", "EgoHands", "HardHatWorkers", "MaskWearing", "MountainDewCommercial", "NorthAmericaMushrooms", "OxfordPets", "PKLot", "Packages", "PascalVOC", "Raccoon", "ShellfishOpenImages", "ThermalCheetah", "UnoCards", "VehiclesOpenImages", "WildfireSmoke", "boggleBoards", "brackishUnderwater", "dice", "openPoetryVision", "pistols", "plantdoc", "pothole", "selfdrivingCar", "thermalDogsAndPeople", "vector", "websiteScreenshots"]
 
