@@ -200,6 +200,21 @@ class GLIPDemo(object):
             tokenized = self.tokenizer([original_caption], return_tensors="pt")
             if custom_entity is None:
                 tokens_positive = self.run_ner(original_caption)
+            else:
+                tokens_positive = []
+                for entity in custom_entity:
+                    if "char_bounds" in entity:
+                        # char bounds provided
+                        tokens_positive.append([list(entity["char_bounds"])])
+                    else:
+                        # online look for char bounds
+                        for i, m in enumerate(re.finditer(entity["span"], original_caption)):
+                            if i >= 1:
+                                print(
+                                    f"More than 1 match with the phrase {entity['span']} in {entity['span']}! We only take the first match."
+                                )
+                                break
+                            tokens_positive.append([[m.start(), m.end()]])
             print(tokens_positive)
         # process positive map
         positive_map = create_positive_map(tokenized, tokens_positive)
