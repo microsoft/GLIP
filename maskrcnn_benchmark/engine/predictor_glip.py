@@ -187,12 +187,11 @@ class GLIPDemo(object):
             seperation_tokens = " . "
             for word in original_caption:
                 
-                tokens_positive.append([len(caption_string), len(caption_string) + len(word)])
+                tokens_positive.append([[len(caption_string), len(caption_string) + len(word)]])
                 caption_string += word
                 caption_string += seperation_tokens
             
             tokenized = self.tokenizer([caption_string], return_tensors="pt")
-            tokens_positive = [tokens_positive]
 
             original_caption = caption_string
             print(tokens_positive)
